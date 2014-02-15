@@ -1,0 +1,353 @@
+body{
+background-color: #ffffff;
+background-image: url(images/bgrt.jpg); 
+background-repeat: repeat-y;
+background-position: right;
+color: #000000;
+margin: 0px;
+font-family: Verdana, Arial, sans-serif;
+}
+#form{
+background: #ffffff;
+text-align: left;
+margin-left: 10px;
+}
+label{
+color: #617d24;
+font-weight: bold;
+padding: 2px;
+}
+label.alter{
+	text-align: right;
+}
+fieldset{
+border: 1px solid #94b057;
+margin: 5px 5px 5px 5px;
+padding: 5px 2px 5px 5px;
+}
+fieldset.login {
+width: 50%;
+}
+fieldset.main {
+width: 800px;
+}
+fieldset.chg {
+width: 75%;
+}
+legend{
+color: #617d24;
+font-weight: bold;
+}
+DIV.LBBLeft {
+	margin-bottom: 1pc;
+	margin-left: 0.5em; 
+	padding-left: 1em;
+	padding-right: 0.5em;
+	font-size: 80%;
+}
+
+DIV.LBBRight {
+	width: 200px;
+	height: 100%;
+	margin-left: 0.5em;
+	padding-top: 40px; 
+	padding-left: 1em;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	float: right;
+	font-size: 80%;
+}
+
+DIV.LBBRightTitle {
+	font-weight: bolder;
+	font-size: 120%;
+	margin-left: 0.0em; 
+}
+
+
+DIV.LBBPostInfo { 
+	font-weight: bolder;
+	font-size: 120%;
+	margin-left: 0.0em; 
+}
+
+DIV.LBBBanner {
+	height: 50px;
+	border-top: 4px solid #fab057;
+	border-bottom: 4px solid #fab057;
+	padding-bottom: 2px;
+	background-color: #f37108;
+	background-image: url(images/bookmarklogo.jpg);
+	background-repeat: no-repeat;
+	clear: both;
+}
+DIV.LBBBannerText {
+	padding-left: 225px;
+	padding-top: 25px;
+	color: #ffffff;
+}
+SPAN.LBBBannerText {
+	font-weight: bolder;
+	font-size: 150%;
+}
+DIV.LBBBannerRight {
+	padding-top: 25px;
+	float: right;
+	padding-right: 0.5pc;
+}
+
+DIV.LBBRightTitle {
+	color: #ffffff;
+	margin-bottom: 0.5pc;
+	padding-top: 0.5pc;
+}
+
+DIV.LBBBookmark {
+	float: left;
+}
+
+DIV.LBBPost {
+	line-break: emergency;
+	margin-bottom: 0.25pc;
+	font-size: 100%;
+	padding-top: 0.5ex;
+	padding-left: 0.5em; 
+}
+
+DIV.post { line-break: emergency; margin-bottom: 0.25pc; font-size: 100%; padding-top: 0.5ex; }
+DIV.extended { font-size: 83%; }
+
+DIV.LBBPostInfo {
+	margin-bottom: 0.25pc;
+	font-size: 100%;
+	padding-top: 0.5pc;
+	padding-left: 0.5em;
+}
+DIV.LBBPostExtended {
+	font-size: 90%;
+	margin-left: 5pc;
+}
+DIV.LBBMain {
+	margin-left: 10px;
+	margin-right: 5px;
+	padding-bottom: 0.5pc; padding-left: 0.5em; padding-top: 0.5ex; 
+}
+DIV.narrow {
+	margin-left: 10px;
+	margin-right: 250px;
+	padding-bottom: 0.5pc; 
+	padding-left: 0.5em; 
+	padding-top: 0.5ex; 
+}
+
+DIV.LBBPage {
+	padding-bottom: 0.5pc; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.5ex; 
+	background-color: #eeeeee;
+}
+.LBBInfo { padding-left: 0.5em;margin-bottom: 0.25pc; font-size: 100%; padding-top: 0.5pc; }
+
+SPAN.LBBNote { font-size: 80%; }
+SPAN.LBBNum { 
+	float: left; 
+	width: 20px; 
+	color: #ffffff; 
+	text-align: right;
+	}
+div.LBBTag { 
+	padding-right: 4px;
+}
+a { 
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+a.header:link {
+	color: #ffffff;
+	text-decoration: none;
+	background-image: url(images/dot.jpg);
+	padding-left: 10px;
+}
+a.header:active { 
+	color: #ffffff;
+	text-decoration: none;
+	background-image: url(images/dot.jpg);
+	padding-left: 10px;
+}
+a.header:visited { 
+	color: #ffffff;
+	text-decoration: none;
+	background-image: url(images/dot.jpg);
+	padding-left: 10px;
+}
+a.header:hover { 
+	text-decoration: none;
+	color: #fab057;
+	background-image: url(images/dot.jpg);
+	padding-left: 10px; 
+}
+a.bodyl:link {
+	color: #4a6043;
+	text-decoration: none;
+	background: url(images/dot.jpg) no-repeat left 6px;
+	padding-left: 10px;
+}
+a.bodyl:active { 
+	color: #c65c06;
+	text-decoration: none;
+	background: url(images/dot.jpg) no-repeat left 6px;
+	padding-left: 10px;
+}
+a.bodyl:visited { 
+	color: #c65c06;
+	text-decoration: none;
+	background: url(images/dot.jpg) no-repeat left 6px;
+	padding-left: 10px;
+}
+a.bodyl:hover { 
+	text-decoration: none;
+	color: #fab057;
+	background: url(images/dot.jpg) no-repeat left 6px;
+	padding-left: 10px; 
+}
+a.rt:link {
+	color: #4a6043;
+	text-decoration: none;
+	padding-right: 3px;
+}
+a.rt:active { 
+	color: #c65c06;
+	text-decoration: none;
+	padding-right: 3px;
+}
+a.rt:visited { 
+	color: #c65c06;
+	text-decoration: none;
+	padding-right: 3px;
+}
+a.rt:hover { 
+	text-decoration: none;
+	color: #fab057;
+	padding-right: 3px;
+}
+a.right:link {
+	color: #ffffff;
+	text-decoration: none;
+	padding-left: 10px;
+}
+a.right:active { 
+	color: #ffffff;
+	text-decoration: none;
+	padding-left: 10px;
+}
+a.right:visited { 
+	color: #ffffff;
+	text-decoration: none;
+	padding-left: 10px;
+}
+a.right:hover { 
+	text-decoration: none;
+	color: #fab057;
+	padding-left: 10px;
+}
+a.body:link { 
+	color: #df6807;
+ 	font-weight: bold;
+}
+a.body:active { 
+	color: #df6807;
+	font-weight: bold;
+}
+a.body:visited { 
+	color: #df6807;
+	font-weight: bold;
+}
+a.body:hover { 
+	color: #fab057;
+	font-weight: bold;
+}
+a.bodyt:link { 
+	color: #df6807;
+ }
+a.bodyt:active { 
+	color: #df6807;
+}
+a.bodyt:visited { 
+	color: #df6807;
+}
+a.bodyt:hover { 
+	color: #fab057;
+}
+a.bodym:link { 
+	color: #8d7108;
+}
+a.bodym:active { 
+	color: #8d7108;
+}
+a.bodym:visited { 
+	color: #8d7108;
+}
+a.bodym:hover { 
+	color: #fab057;
+}
+th {
+	border-bottom: 1px solid #fab057;
+	text-align: left;
+}
+.thome {
+	color: #df6807;
+}
+.thomert {
+	color: #df6807;
+	text-align: right;
+	padding-left: 5px;
+}
+
+.rtside {
+	padding-right: 0px;
+	padding-bottom: 5px;
+	padding-left: 20px;
+	border-bottom: 1px solid #94b057;
+	text-align: right;
+}
+.rttop {
+	padding-right: 0px;
+	padding-left: 20px;
+	text-align: right;
+}
+.rttopu {
+	border-bottom: 1px solid #fab057;
+	text-align: right;
+	padding-left: 20px;
+}
+.below {
+	padding-right: 25px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #94b057;
+}
+li {
+	list-style-image: url(images/greendot.jpg);
+	padding-bottom: 5px;
+}
+.help	{
+	border-bottom: 2px solid #fab057;
+	color: #617d24;
+	font-weight: bold;
+	padding-bottom: 2px;
+	background-image: url(images/greendot.jpg);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 10px;
+}
+.push {
+	text-align: center;
+	font-family: Verdana, Arial, sans-serif;
+	background-color: #fbaf57;
+	color: #ffffff;
+	font-size: small;
+	font-weight: bold;
+	border: 3px solid #94b057;
+}
+#push:hover {color:red}
+
+
+

@@ -1,0 +1,14 @@
+[database]
+; DEVELOPMENT
+host = localhost
+database = bookmark
+username = myUsername
+password = mypassword
+
+; PRODUCTION 
+;host = somehost.com
+;database = bookmark
+;username = myProdUsername
+;password = myProdPassword
+
+
