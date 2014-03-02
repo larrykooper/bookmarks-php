@@ -43,7 +43,7 @@
             <div class="actions">
                 <?php echo $this->Html->link(__('View'), array('action' => 'view', $uRL['URL']['URLID'])); ?>
                 <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $uRL['URL']['URLID'])); ?>
-                <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $uRL['URL']['URLID']), null, __('Are you sure you want to delete # %s?', $uRL['URL']['URLID'])); ?>
+                <?php echo $this->Form->postLink(__('Delete - not working yet'), array('action' => 'delete', $uRL['URL']['URLID']), null, __('Are you sure you want to delete # %s?', $uRL['URL']['URLID'])); ?>
             </div>
 
         </div> <!-- one-url -->
