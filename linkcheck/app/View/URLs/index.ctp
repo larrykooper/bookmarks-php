@@ -1,48 +1,53 @@
 <div class="uRLs index">
-	<h2><?php echo __('U R Ls'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('URLID'); ?></th>
-			<th><?php echo $this->Paginator->sort('URL'); ?></th>
-			<th><?php echo $this->Paginator->sort('LastChecked'); ?></th>
-			<th><?php echo $this->Paginator->sort('HttpCode'); ?></th>
-			<th><?php echo $this->Paginator->sort('ErrorText'); ?></th>
-			<th><?php echo $this->Paginator->sort('RedirectLocation'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($uRLs as $uRL): ?>
-	<tr>
-		<td><?php echo h($uRL['URL']['URLID']); ?>&nbsp;</td>
-		<td><?php echo h($uRL['URL']['URL']); ?>&nbsp;</td>
-		<td><?php echo h($uRL['URL']['LastChecked']); ?>&nbsp;</td>
-		<td><?php echo h($uRL['URL']['HttpCode']); ?>&nbsp;</td>
-		<td><?php echo h($uRL['URL']['ErrorText']); ?>&nbsp;</td>
-		<td><?php echo h($uRL['URL']['RedirectLocation']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $uRL['URL']['URLID'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $uRL['URL']['URLID'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $uRL['URL']['URLID']), null, __('Are you sure you want to delete # %s?', $uRL['URL']['URLID'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New U R L'), array('action' => 'add')); ?></li>
-	</ul>
+    <h2>
+        <?php echo __('Larrybeth Bookmarks Link Checker Report'); ?>
+    </h2>
+
+    <?php foreach ($uRLs as $uRL): ?>
+        <!--  HERE BEGIN ONE SITE (URL) -->
+        <div class="one-url">
+            <table>
+                <tr>
+                    <td class="label">URLID:</td><td><?php echo h($uRL['URL']['URLID']); ?></td>
+                </tr>
+                <tr>
+                    <td class="label">URL:</td><td><?php echo h($uRL['URL']['URL']); ?></td>
+                </tr>
+                <tr>
+                    <td class="label">Last Checked:</td><td><?php echo h($uRL['URL']['LastChecked']); ?></td>
+                </tr>
+                <tr>
+                    <td class="label">Http Code:</td><td><?php echo h($uRL['URL']['HttpCode']); ?></td>
+                </tr>
+                <tr>
+                    <td class="label">Message:</td><td><?php echo h($uRL['URL']['ErrorText']); ?></td>
+                </tr>
+                <tr>
+                    <td class="label">Redirect Location:</td><td><?php echo h($uRL['URL']['RedirectLocation']); ?></td>
+                </tr>
+            </table>
+            <div class="actions">
+                <?php echo $this->Html->link(__('View'), array('action' => 'view', $uRL['URL']['URLID'])); ?>
+                <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $uRL['URL']['URLID'])); ?>
+                <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $uRL['URL']['URLID']), null, __('Are you sure you want to delete # %s?', $uRL['URL']['URLID'])); ?>
+            </div>
+
+        </div> <!-- one-url -->
+        <!-- HERE END ONE SITE  -->
+    <?php endforeach; ?>
+    <?php echo $this->Html->link(__('Add a URL'), array('action' => 'add')); ?>
+    <p>
+        <?php
+        echo $this->Paginator->counter(array(
+        'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+        ));
+        ?>
+    </p>
+    <div class="paging">
+    <?php
+        echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+        echo $this->Paginator->numbers(array('separator' => ''));
+        echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+    ?>
+    </div>
 </div>
