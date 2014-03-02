@@ -2,28 +2,42 @@
     <h2>
         <?php echo __('Larrybeth Bookmarks Link Checker Report'); ?>
     </h2>
+    SORT BY:
+
+    <?php echo $this->Paginator->sort('URLID'); ?>
+    <?php echo $this->Paginator->sort('URL'); ?>
+    <?php echo $this->Paginator->sort('LastChecked'); ?>
+    <?php echo $this->Paginator->sort('HttpCode'); ?>
+    <?php echo $this->Paginator->sort('ErrorText'); ?>
+    <?php echo $this->Paginator->sort('RedirectLocation'); ?>
 
     <?php foreach ($uRLs as $uRL): ?>
         <!--  HERE BEGIN ONE SITE (URL) -->
         <div class="one-url">
             <table>
                 <tr>
-                    <td class="label">URLID:</td><td><?php echo h($uRL['URL']['URLID']); ?></td>
+                    <td class="label">URLID:</td>
+                    <td><?php echo h($uRL['URL']['URLID']); ?></td>
                 </tr>
                 <tr>
-                    <td class="label">URL:</td><td><?php echo h($uRL['URL']['URL']); ?></td>
+                    <td class="label">URL:</td>
+                    <td><a href="<?php echo $uRL['URL']['URL'] ?>"><?php echo h($uRL['URL']['URL']); ?></a></td>
                 </tr>
                 <tr>
-                    <td class="label">Last Checked:</td><td><?php echo h($uRL['URL']['LastChecked']); ?></td>
+                    <td class="label">Last Checked:</td>
+                    <td><?php echo h($uRL['URL']['LastChecked']); ?></td>
                 </tr>
                 <tr>
-                    <td class="label">Http Code:</td><td><?php echo h($uRL['URL']['HttpCode']); ?></td>
+                    <td class="label">Http Code:</td>
+                    <td><?php echo h($uRL['URL']['HttpCode']); ?></td>
                 </tr>
                 <tr>
-                    <td class="label">Message:</td><td><?php echo h($uRL['URL']['ErrorText']); ?></td>
+                    <td class="label">Message:</td>
+                    <td><?php echo h($uRL['URL']['ErrorText']); ?></td>
                 </tr>
                 <tr>
-                    <td class="label">Redirect Location:</td><td><?php echo h($uRL['URL']['RedirectLocation']); ?></td>
+                    <td class="label">Redirect Location:</td>
+                    <td><?php echo h($uRL['URL']['RedirectLocation']); ?></td>
                 </tr>
             </table>
             <div class="actions">
