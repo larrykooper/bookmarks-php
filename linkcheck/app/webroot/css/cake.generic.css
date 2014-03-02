@@ -114,8 +114,11 @@ p {
 }
 
 /** containers **/
+div.index {
+    width: 100%;    
+}
+
 div.form,
-div.index,
 div.view {
 	float:right;
 	width:76%;
@@ -123,8 +126,6 @@ div.view {
 	padding:10px 2%;
 }
 div.actions {
-	float:left;
-	width:16%;
 	padding:10px 1.5%;
 }
 div.actions h3 {
