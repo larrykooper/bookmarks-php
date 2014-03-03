@@ -17,29 +17,28 @@
     <div class="one-url">
         <table>
             <tr>
-                <td class="label">UserSiteID:</td>
-                <td><?php echo h($userSite['UserSite']['UserSiteID']); ?></td>
-            </tr>
-            <tr>
                 <td class="label">UserID:</td>
                 <td>
             <?php echo $this->Html->link($userSite['User']['UserID'], array('controller' => 'users', 'action' => 'view', $userSite['User']['UserID'])); ?>
                 </td>
             </tr>
             <tr>
-                <td class="label">Description/Title:</td>
-                <td><?php echo h($userSite['UserSite']['SiteDescr']); ?></td>
-            </tr>
-            <tr>
                 <td class="label">URL:</td>
                 <td>
-                    <?php echo $this->Html->link($userSite['Url']['URL'], array('controller' => 'urls', 'action' => 'view', $userSite['Url']['URLID'])); ?>
+                    <?php echo $this->Html->link($userSite['Url']['URL'], $userSite['Url']['URL']); ?>
                 </td>
             </tr>
             <tr>
-                <td class="label">Extended Description:</td>
-                <td><?php echo h($userSite['UserSite']['ExtendedDesc']); ?></td>
+                <td class="label">Description/Title:</td>
+                <td><?php echo h($userSite['UserSite']['SiteDescr']); ?></td>
             </tr>
+
+             <?php if (!empty($userSite['UserSite']['ExtendedDesc'])) {  ?>
+                <tr>
+                    <td class="label">Extended Description:</td>
+                    <td><?php echo h($userSite['UserSite']['ExtendedDesc']); ?></td>
+                </tr>
+             <?php } ?>
             <tr>
                 <td class="label">Date Posted:</td>
                 <td><?php echo h($userSite['UserSite']['OrigPostingTime']); ?></td>
@@ -48,10 +47,15 @@
                 <td class="label">Message:</td>
                 <td><?php echo $userSite['Url']['ErrorText']; ?></td>
             </tr>
+            <?php if (!empty($userSite['Url']['RedirectLocation'])) {  ?>
+                <tr>
+                    <td class="label">Redirect Location:</td>
+                    <td><?php echo $this->Html->link($userSite['Url']['RedirectLocation'], $userSite['Url']['RedirectLocation']); ?></td>
+                </tr>
+            <?php } ?>
             
         </table>
         <div class="actions">
-            <?php echo $this->Html->link(__('View'), array('action' => 'view', $userSite['UserSite']['UserSiteID'])); ?>
             <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $userSite['UserSite']['UserSiteID'])); ?>
             <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $userSite['UserSite']['UserSiteID']), null, __('Are you sure you want to delete # %s?', $userSite['UserSite']['UserSiteID'])); ?>
         </div>
