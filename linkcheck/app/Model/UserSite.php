@@ -62,7 +62,7 @@ class UserSite extends AppModel {
 	'UserSiteTag' => array(
 			'className' => 'UserSiteTag',
 			'foreignKey' => 'UserSiteID',
-			'dependent' => false,
+			'dependent' => true,    // true means delete tags that depend on this UserSite if we delete
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -80,18 +80,18 @@ class UserSite extends AppModel {
 
     public $actsAs = array('Containable');
 
-    public function getUserSites() {
-        $userSites = $this->find('all',
+    public function getTagRecordsForUserSite($UserSiteID) {
+        $userSite = $this->find('first',
             array(
                 'conditions' => array(
-                    'UserSite.UserSiteID' => 44
+                    'UserSite.UserSiteID' => $UserSiteID
                 ),
                 'contain' => array(
                     'UserSiteTag' => array()
                 )
             )
         );
-        return $userSites;
+        return $userSite;
     }
 
 }
