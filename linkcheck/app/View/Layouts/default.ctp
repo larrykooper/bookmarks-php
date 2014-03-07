@@ -38,7 +38,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>This is the Header</h1>
+			<h1>Welcome, <?php echo $_SESSION['valid_user']; ?></h1>
 		</div>
 		<div id="content">
 
