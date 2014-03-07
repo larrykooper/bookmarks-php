@@ -27,4 +27,38 @@ class URL extends AppModel {
  */
 	public $displayField = 'URL';
 
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'UserSite' => array(
+			'className' => 'UserSite',
+			'foreignKey' => 'URLID',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'UserSiteTag' => array(
+			'className' => 'UserSiteTag',
+			'foreignKey' => 'URLID',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 }

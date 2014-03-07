@@ -51,6 +51,14 @@ class UserSiteTag extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'UserSite' => array(
+		    'className' => 'UserSite',
+		    'foreignKey' => 'UserSiteID',
+		    'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
+
 }
