@@ -29,7 +29,6 @@ class UserSite extends AppModel {
  */
 	public $displayField = 'SiteDescr';
 
-
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
@@ -74,5 +73,25 @@ class UserSite extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
+	// BEGIN LARRY'S SPIKE FOR TAGS
+	// THAT IS WORKING
+    public $recursive = -1;
+
+    public $actsAs = array('Containable');
+
+    public function getUserSites() {
+        $userSites = $this->find('all',
+            array(
+                'conditions' => array(
+                    'UserSite.UserSiteID' => 44
+                ),
+                'contain' => array(
+                    'UserSiteTag' => array()
+                )
+            )
+        );
+        return $userSites;
+    }
 
 }
