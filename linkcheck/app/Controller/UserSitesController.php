@@ -13,7 +13,8 @@ class UserSitesController extends AppController {
  *
  * @var array
  */
-    public $components = array('Paginator');
+
+    public $components = array('Paginator', 'Session');  // We need Session to use the Flash
 
     public $paginate = array(
         'contain' => array('UserSiteTag')
@@ -28,8 +29,6 @@ class UserSitesController extends AppController {
              // If not validated, I want to redirect to some "jail page"
              return $this->redirect(array('controller' => 'some_controller', 'action' => 'index'));
         } else {
-            $this->log("validated", 'debug');
-            $this->log($theusername, 'debug');
             $this->loggedInUser = $theusername;
         }
     }
@@ -48,8 +47,8 @@ class UserSitesController extends AppController {
         $this->set('userSites', $data);
     }
 
-    public function showTags () {
-        $mySites = $this->UserSite->getUserSites();
+    public function showTags() {
+        $mySites = $this->UserSite->getTagRecordsForUserSite(44);
         $this->log("in controller", 'debug');
         $this->log($mySites, 'debug');
         $this->set('mySites', $mySites);
@@ -130,13 +129,27 @@ class UserSitesController extends AppController {
  * @return void
  */
     public function delete($id = null) {
+        $this->loadModel('URL');   // So we can use URL model
+        $options = array('conditions' => array('UserSite.' . $this->UserSite->primaryKey => $id));
+        $myUserSite = $this->UserSite->find('first', $options);  // read UserSite record
+        $myURLID = $myUserSite['UserSite']['URLID'];  // get URLID
+
+        $this->log("my URL ID: ".$myURLID, 'debug');
+
         $this->UserSite->id = $id;
         if (!$this->UserSite->exists()) {
             throw new NotFoundException(__('Invalid user site'));
         }
         $this->request->onlyAllow('post', 'delete');
+        // Next line deletes the UserSite AND its dependent UserSiteTags
         if ($this->UserSite->delete()) {
             $this->Session->setFlash(__('The user site has been deleted.'));
+            $myCount = $this->UserSite->find('count', array('conditions' => array('UserSite.URLID' => $myURLID)));
+            $this->log("count: ".$myCount, 'debug');
+            // If no more UserSites with this URL, we delete URL as well
+            if ($myCount == 0) {
+                $this->URL->delete($myURLID);
+            }
         } else {
             $this->Session->setFlash(__('The user site could not be deleted. Please, try again.'));
         }
