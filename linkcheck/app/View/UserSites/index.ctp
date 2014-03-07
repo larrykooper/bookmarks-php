@@ -19,12 +19,6 @@
     <div class="one-url">
         <table>
             <tr>
-                <td class="label">UserID:</td>
-                <td>
-            <?php echo $this->Html->link($userSite['User']['UserID'], array('controller' => 'users', 'action' => 'view', $userSite['User']['UserID'])); ?>
-                </td>
-            </tr>
-            <tr>
                 <td class="label">URL:</td>
                 <td>
                     <?php echo $this->Html->link($userSite['Url']['URL'], $userSite['Url']['URL']); ?>
