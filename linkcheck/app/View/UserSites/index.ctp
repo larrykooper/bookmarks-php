@@ -25,7 +25,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">Description/Title:</td>
+                <td class="label">Title:</td>
                 <td><?php echo h($userSite['UserSite']['SiteDescr']); ?></td>
             </tr>
 

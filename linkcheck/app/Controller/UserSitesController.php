@@ -41,6 +41,7 @@ class UserSitesController extends AppController {
  */
     public function index() {
         $this->UserSite->recursive = 1;
+        $this->UserSite->unbindModel( array('belongsTo' => array('User')));
         $data = $this->Paginator->paginate(
             'UserSite', array('UserSite.UserID' => $this->loggedInUser));
 
