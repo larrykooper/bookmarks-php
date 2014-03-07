@@ -19,6 +19,8 @@ class UserSitesController extends AppController {
         'contain' => array('UserSiteTag')
     );
 
+    private $loggedInUser;
+
     public function beforeFilter() {
         require('../../../ckuser.php');
         if (!$validated) {
@@ -28,6 +30,7 @@ class UserSitesController extends AppController {
         } else {
             $this->log("validated", 'debug');
             $this->log($theusername, 'debug');
+            $this->loggedInUser = $theusername;
         }
     }
 
@@ -38,7 +41,10 @@ class UserSitesController extends AppController {
  */
     public function index() {
         $this->UserSite->recursive = 1;
-        $this->set('userSites', $this->Paginator->paginate());
+        $data = $this->Paginator->paginate(
+            'UserSite', array('UserSite.UserID' => $this->loggedInUser));
+
+        $this->set('userSites', $data);
     }
 
     public function showTags () {
