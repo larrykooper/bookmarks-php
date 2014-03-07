@@ -15,14 +15,25 @@ class UserSitesController extends AppController {
  */
 	public $components = array('Paginator');
 
+    public $paginate = array(
+        'contain' => array('UserSiteTag')
+    );
+
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		$this->UserSite->recursive = 0;
+		$this->UserSite->recursive = 1;
 		$this->set('userSites', $this->Paginator->paginate());
+	}
+
+	public function showTags () {
+    	$mySites = $this->UserSite->getUserSites();
+    	$this->log("in controller", 'debug');
+    	$this->log($mySites, 'debug');
+    	$this->set('mySites', $mySites);
 	}
 
 /**

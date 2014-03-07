@@ -13,6 +13,8 @@
             <?php echo $this->Paginator->sort('OrigPostingTime'); ?>
 
     <?php foreach ($userSites as $userSite): ?>
+    <?php   // $this->log($userSite, 'debug');  ?>
+
         <!--  HERE BEGIN ONE listing -->
     <div class="one-url">
         <table>
@@ -39,6 +41,14 @@
                     <td><?php echo h($userSite['UserSite']['ExtendedDesc']); ?></td>
                 </tr>
              <?php } ?>
+            <tr>
+                <td class="label">Tags:</td>
+                <td>
+                    <?php foreach($userSite['UserSiteTag'] as $theTag) {   ?>
+                        <?php echo $theTag['Tag']; ?>
+                    <?php  } ?>
+                </td>
+            </tr>
             <tr>
                 <td class="label">Date Posted:</td>
                 <td><?php echo h($userSite['UserSite']['OrigPostingTime']); ?></td>
