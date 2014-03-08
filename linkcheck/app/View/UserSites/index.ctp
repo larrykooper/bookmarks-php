@@ -61,7 +61,13 @@
         </table>
         <div class="actions">
             <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $userSite['UserSite']['UserSiteID'])); ?>
+
+            <a class="changeToRedirect" data-url="<?php echo $userSite['UserSite']['URLID']; ?>" href="#">Change URL to Redirect Location</a>
+            <?php //postlink is wrong. it creates a form ?>
+            <?php // echo $this->Form->postLink(__('Change URL to Redirect Location'), array('controller' => 'urls', 'action' => 'changeUrlToRedirectLocation', $userSite['UserSite']['URLID'])) ?>
+
             <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $userSite['UserSite']['UserSiteID']), null, __('Are you sure you want to delete # %s?', $userSite['UserSite']['UserSiteID'])); ?>
+
         </div>
 
     </div> <!-- one-url -->

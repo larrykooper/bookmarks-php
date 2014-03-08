@@ -14,7 +14,7 @@ class URLsController extends AppController {
  *
  * @var array
  */
-    public $components = array('Paginator');
+    public $components = array('Paginator', 'Session');
 
     public function beforeFilter() {
 
@@ -94,6 +94,14 @@ class URLsController extends AppController {
             $options = array('conditions' => array('URL.' . $this->URL->primaryKey => $id));
             $this->request->data = $this->URL->find('first', $options);
         }
+    }
+
+    public function changeUrlToRedirectLocation($id) {
+        $this->URL->changeUrlToRedirectLocation($id);
+        // Now, render a response - which is NOT giong to be a complete view, it
+        // will just be updating the DOM.
+        // TODO fix this
+        $this->render('/Elements/changeUrlToRedirect');
     }
 
 /**
