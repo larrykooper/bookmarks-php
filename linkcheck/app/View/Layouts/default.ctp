@@ -33,6 +33,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+	
+	    echo $this->Html->script('jquery-2.1.0'); // Include jQuery library
+	    echo $this->Html->script('linkchecker');
 	?>
 </head>
 <?php
