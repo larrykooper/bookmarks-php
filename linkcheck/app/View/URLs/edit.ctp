@@ -4,7 +4,7 @@
 		<legend><?php echo __('Edit U R L'); ?></legend>
 	<?php
 		echo $this->Form->input('URLID');
-		echo $this->Form->input('URL');
+		echo $this->Form->input('URL', array('type' => 'text'));
 		echo $this->Form->input('LastChecked');
 		echo $this->Form->input('HttpCode');
 		echo $this->Form->input('ErrorText');
