@@ -65,7 +65,9 @@ class URL extends AppModel {
         $options = array('conditions' => array('URL.' . $this->primaryKey => $id));
         $myURL = $this->find('first', $options);
         $myURL['URL']['URL'] = $myURL['URL']['RedirectLocation'];
+        $this->log("Message 18: about to save", 'debug');
         $this->save($myURL);
+        $this->log("Message 19: saved", 'debug');
     }
 
 }
