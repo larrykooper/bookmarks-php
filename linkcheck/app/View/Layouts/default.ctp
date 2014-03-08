@@ -35,10 +35,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('script');
 	?>
 </head>
+<?php
+$username = '';
+if (array_key_exists ('valid_user', $_SESSION)) {
+    $username = $_SESSION['valid_user'];
+}
+?>
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Welcome, <?php echo $_SESSION['valid_user']; ?></h1>
+			<h1>Welcome, <?php echo $username; ?></h1>
 		</div>
 		<div id="content">
 
