@@ -68,6 +68,8 @@ class URL extends AppModel {
         $this->log("Message 18: about to save", 'debug');
         $this->save($myURL);
         $this->log("Message 19: saved", 'debug');
+        $retval = array('id' => $id, 'newUrl' => $myURL['URL']['RedirectLocation']);
+        return $retval;
     }
 
 }

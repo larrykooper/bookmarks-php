@@ -97,13 +97,10 @@ class URLsController extends AppController {
     }
 
     public function changeUrlToRedirectLocation($id) {
-        $this->URL->changeUrlToRedirectLocation($id);
-        //$this->autorender(false);
-        // Now, render a response- which is NOT giong to be a complete view, it
-        // will just be updating the DOM.
-        // TODO fix this
-        $this->render('/Elements/changeUrlToRedirect');
-        //$this->set('urlChanged', $id);
+        $urlInfo = $this->URL->changeUrlToRedirectLocation($id);
+        $this->autoRender = false;
+        $this->layout = 'ajax';        
+        $this->response->body(json_encode($urlInfo));
     }
 
 /**

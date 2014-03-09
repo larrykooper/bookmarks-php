@@ -5,3 +5,7 @@
 .label {
     width: 250px;
 }
+
+.output-message {
+    display: inline;
+}

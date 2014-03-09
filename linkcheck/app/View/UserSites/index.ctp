@@ -16,12 +16,12 @@
     <?php   // $this->log($userSite, 'debug');  ?>
 
         <!--  HERE BEGIN ONE listing -->
-    <div class="one-url">
+    <div class="one-url" data-url="<?php echo $userSite['UserSite']['URLID']; ?>">
         <table>
             <tr>
                 <td class="label">URL:</td>
                 <td>
-                    <?php echo $this->Html->link($userSite['Url']['URL'], $userSite['Url']['URL']); ?>
+                    <?php echo $this->Html->link($userSite['Url']['URL'], $userSite['Url']['URL'], array('class' => 'url-link')); ?>
                 </td>
             </tr>
             <tr>

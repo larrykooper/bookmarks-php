@@ -16,11 +16,15 @@ var setUrlToRedirect = function (URLID) {
 };
 
 var successFunction = function(data) {
+    var retObj;
+    var $oneUrl, $myLink;
+    retObj = JSON.parse(data);
     console.log('message 21');
-    // NOTE - data is the entire HTML page. Obvi I don't want that. 
-    // TODO, fix it when I am actually updating the sql
-    //console.log(data);
-    //$('.output-message[data-url=' + data + ']').html("DONE!");  
+   
+    $oneUrl = $('.one-url[data-url= '+ retObj.id + ']');
+    $myLink = $oneUrl.find('.url-link')
+    $myLink.html(retObj.newUrl);
+    $('.output-message[data-url= '+ retObj.id + ']').html("DONE!");  
 };
 
 var alwaysFunction = function() {
