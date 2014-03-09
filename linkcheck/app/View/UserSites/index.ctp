@@ -61,7 +61,9 @@
         </table>
         <div class="actions">
             <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $userSite['UserSite']['UserSiteID'])); ?>
-            <a class="changeToRedirect" data-url="<?php echo $userSite['UserSite']['URLID']; ?>">Change URL to Redirect Location</a>
+            <?php if (!empty($userSite['Url']['RedirectLocation'])) {  ?>
+                <a class="changeToRedirect" data-url="<?php echo $userSite['UserSite']['URLID']; ?>">Change URL to Redirect Location</a>
+            <?php } ?>   
             <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $userSite['UserSite']['UserSiteID']), null, __('Are you sure you want to delete # %s?', $userSite['UserSite']['UserSiteID'])); ?>
             <div class="output-message" data-url="<?php echo $userSite['UserSite']['URLID']; ?>"></div>
 
