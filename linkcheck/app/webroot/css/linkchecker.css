@@ -1,3 +1,16 @@
+.page-title {
+    display: inline;
+}
+
+.codes {
+    margin-left: 10px;
+}
+
+.sort-by-code {
+    display: block;
+    margin-top: 7px;
+}
+
 .sites-table {
     table-layout: fixed;
 }

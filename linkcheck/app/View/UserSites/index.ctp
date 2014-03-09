@@ -1,9 +1,14 @@
 <div class="userSites index">
-    <h2>
+    <h2 class="page-title">
         <?php echo __('Larrybeth Bookmarks Link Checker Report'); ?>
     </h2>
-    SORT BY
-    <?php echo $this->Paginator->sort('Url.HttpCode', 'Httpcode'); ?>
+    <span class="codes">
+        NULL 0 200 301 302 303 307 400 401 403 404 405 406 410 500 502 503
+    </span>
+    <span class="sort-by-code">
+        SORT BY
+        <?php echo $this->Paginator->sort('Url.HttpCode', 'Httpcode'); ?>
+    </span>
     <table class="sites-table">
         <tr>
             <th class="url-col">URL</th>
