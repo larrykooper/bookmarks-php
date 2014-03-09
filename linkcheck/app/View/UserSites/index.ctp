@@ -8,9 +8,11 @@
             <?php echo $this->Paginator->sort('UserID'); ?>
             <?php echo $this->Paginator->sort('SiteDescr'); ?>
             <?php echo $this->Paginator->sort('URLID'); ?>
-           
+
             <?php echo $this->Paginator->sort('ExtendedDesc'); ?>
             <?php echo $this->Paginator->sort('OrigPostingTime'); ?>
+
+            <?php echo $this->Paginator->sort('Url.HttpCode', 'Httpcode'); ?>
 
     <?php foreach ($userSites as $userSite): ?>
     <?php   // $this->log($userSite, 'debug');  ?>
