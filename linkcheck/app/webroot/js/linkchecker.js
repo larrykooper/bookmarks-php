@@ -1,10 +1,7 @@
-console.log('this is linkchecker.js');
-
-
 var setUrlToRedirect = function (URLID) {
     console.log("message 24: about to do ajax call");
     var promise = $.ajax({
-        url: "../../urls/changeUrlToRedirectLocation/" + URLID,
+        url: linkchecker.baseUrl + "urls/changeUrlToRedirectLocation/" + URLID,
         type: 'POST',
         dataType: 'HTML'
     });
@@ -24,7 +21,7 @@ var successFunction = function(data) {
     $oneUrl = $('.one-url[data-url= '+ retObj.id + ']');
     $myLink = $oneUrl.find('.url-link')
     $myLink.html(retObj.newUrl);
-    $('.output-message[data-url= '+ retObj.id + ']').html("DONE!");  
+    //$('.output-message[data-url= '+ retObj.id + ']').html("DONE!");
 };
 
 var alwaysFunction = function() {

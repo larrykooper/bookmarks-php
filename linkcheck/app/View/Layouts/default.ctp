@@ -25,6 +25,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
+        $myUrl = Router::url(null, true);
+        preg_match('/(.*linkcheck\/)/', $myUrl, $matches);
+        $baseUrl = $matches[1];
+    ?>
+    <script type="text/javascript">
+        window.linkchecker = {
+            "baseUrl": "<?php echo $baseUrl ?>"
+        };
+    </script>
+    <?php
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
