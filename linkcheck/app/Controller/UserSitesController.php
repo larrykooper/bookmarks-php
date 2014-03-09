@@ -38,11 +38,16 @@ class UserSitesController extends AppController {
  *
  * @return void
  */
-    public function index() {
+    public function index($http_code = null) {
+        $this->log("http code: $http_code", 'debug');
         $this->UserSite->recursive = 1;
         $this->UserSite->unbindModel( array('belongsTo' => array('User')));
+        $paginator_conditions = array('UserSite.UserID' => $this->loggedInUser);
+        if (!empty($http_code)) {
+            $paginator_conditions['URL.HttpCode'] = $http_code;
+        }
         $data = $this->Paginator->paginate(
-            'UserSite', array('UserSite.UserID' => $this->loggedInUser));
+            'UserSite', $paginator_conditions);
 
         $this->set('userSites', $data);
     }

@@ -3,7 +3,42 @@
         <?php echo __('Larrybeth Bookmarks Link Checker Report'); ?>
     </h2>
     <span class="codes">
-        NULL 0 200 301 302 303 307 400 401 403 404 405 406 410 500 502 503
+        <?php
+        echo $this->Html->link('NULL',
+    array('controller' => 'UserSites', 'action' => 'index', NULL), array('class' => 'code-link'));
+        echo $this->Html->link('0',
+    array('controller' => 'UserSites', 'action' => 'index', 0), array('class' => 'code-link'));
+        echo $this->Html->link('200',
+    array('controller' => 'UserSites', 'action' => 'index', 200), array('class' => 'code-link'));
+        echo $this->Html->link('301',
+    array('controller' => 'UserSites', 'action' => 'index', 301), array('class' => 'code-link'));
+        echo $this->Html->link('302',
+    array('controller' => 'UserSites', 'action' => 'index', 302), array('class' => 'code-link'));
+        echo $this->Html->link('303',
+    array('controller' => 'UserSites', 'action' => 'index', 303), array('class' => 'code-link'));
+        echo $this->Html->link('307',
+    array('controller' => 'UserSites', 'action' => 'index', 307), array('class' => 'code-link'));
+        echo $this->Html->link('400',
+    array('controller' => 'UserSites', 'action' => 'index', 400), array('class' => 'code-link'));
+        echo $this->Html->link('401',
+    array('controller' => 'UserSites', 'action' => 'index', 401), array('class' => 'code-link'));
+        echo $this->Html->link('403',
+    array('controller' => 'UserSites', 'action' => 'index', 403), array('class' => 'code-link'));
+        echo $this->Html->link('404',
+    array('controller' => 'UserSites', 'action' => 'index', 404), array('class' => 'code-link'));
+        echo $this->Html->link('405',
+    array('controller' => 'UserSites', 'action' => 'index', 405), array('class' => 'code-link'));
+        echo $this->Html->link('406',
+    array('controller' => 'UserSites', 'action' => 'index', 406), array('class' => 'code-link'));
+        echo $this->Html->link('410',
+    array('controller' => 'UserSites', 'action' => 'index', 410), array('class' => 'code-link'));
+        echo $this->Html->link('500',
+    array('controller' => 'UserSites', 'action' => 'index', 500), array('class' => 'code-link'));
+        echo $this->Html->link('502',
+    array('controller' => 'UserSites', 'action' => 'index', 502), array('class' => 'code-link'));
+        echo $this->Html->link('503',
+    array('controller' => 'UserSites', 'action' => 'index', 503), array('class' => 'code-link'));
+       ?>
     </span>
     <span class="sort-by-code">
         SORT BY
@@ -25,7 +60,7 @@
 
             <!--  HERE BEGIN ONE listing -->
 
-            <tr>
+            <tr class="one-url" data-url="<?php echo $userSite['UserSite']['URLID']; ?>">
                 <td class="url-col">
                     <?php echo $this->Html->link($userSite['Url']['URL'], $userSite['Url']['URL'], array('class' => 'url-link')); ?>&nbsp;
                 </td>

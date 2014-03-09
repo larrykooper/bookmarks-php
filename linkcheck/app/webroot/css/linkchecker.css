@@ -6,6 +6,10 @@
     margin-left: 10px;
 }
 
+.code-link {
+    margin-right: 5px;
+}
+
 .sort-by-code {
     display: block;
     margin-top: 7px;
