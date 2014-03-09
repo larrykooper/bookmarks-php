@@ -1,3 +1,7 @@
+.sites-table {
+    table-layout: fixed;
+}
+
 .one-url {
     margin-top: 15px;
 }
@@ -9,3 +13,46 @@
 .output-message {
     display: inline;
 }
+
+.redirect-url {
+    display: block;
+}
+
+.chgToRedir {
+    display: block;
+    margin-top: 13px;
+}
+
+.changeToRedirect {
+    font-size: 12px;
+}
+
+.url-col {
+    word-wrap:break-word;
+}
+
+.title {
+    width: 225px;
+}
+
+.extended-col {
+    width: 138px;
+}
+
+.tags-col {
+    width: 119px;
+}
+
+.post-date {
+    width: 100px;
+}
+
+.message-col {
+    width: 217px;
+    word-wrap:break-word;
+}
+
+.actions {
+    width: 167px;
+}
+

@@ -2,76 +2,62 @@
     <h2>
         <?php echo __('Larrybeth Bookmarks Link Checker Report'); ?>
     </h2>
-    SORT BY:
+    SORT BY
+    <?php echo $this->Paginator->sort('Url.HttpCode', 'Httpcode'); ?>
+    <table class="sites-table">
+        <tr>
+            <th class="url-col">URL</th>
+            <th class="title"><?php echo $this->Paginator->sort('SiteDescr', 'Title'); ?></th>
 
-            <?php echo $this->Paginator->sort('SiteDescr', 'Title'); ?>
+            <th class="extended-col"><?php echo $this->Paginator->sort('ExtendedDesc'); ?></th>
+            <th class="tags-col">Tags</th>
+            <th class="post-date"><?php echo $this->Paginator->sort('OrigPostingTime', 'Posting Date'); ?></th>
+            <th class="message-col">Message</th>
+            <th class="actions">Actions</th>
 
-            <?php echo $this->Paginator->sort('ExtendedDesc'); ?>
-            <?php echo $this->Paginator->sort('OrigPostingTime'); ?>
+        </tr>
+        <?php foreach ($userSites as $userSite): ?>
 
-            <?php echo $this->Paginator->sort('Url.HttpCode', 'Httpcode'); ?>
+            <!--  HERE BEGIN ONE listing -->
 
-    <?php foreach ($userSites as $userSite): ?>
-    <?php   // $this->log($userSite, 'debug');  ?>
-
-        <!--  HERE BEGIN ONE listing -->
-    <div class="one-url" data-url="<?php echo $userSite['UserSite']['URLID']; ?>">
-        <table>
             <tr>
-                <td class="label">URL:</td>
-                <td>
-                    <?php echo $this->Html->link($userSite['Url']['URL'], $userSite['Url']['URL'], array('class' => 'url-link')); ?>
+                <td class="url-col">
+                    <?php echo $this->Html->link($userSite['Url']['URL'], $userSite['Url']['URL'], array('class' => 'url-link')); ?>&nbsp;
                 </td>
-            </tr>
-            <tr>
-                <td class="label">Title:</td>
-                <td><?php echo h($userSite['UserSite']['SiteDescr']); ?></td>
-            </tr>
 
-             <?php if (!empty($userSite['UserSite']['ExtendedDesc'])) {  ?>
-                <tr>
-                    <td class="label">Extended Description:</td>
-                    <td><?php echo h($userSite['UserSite']['ExtendedDesc']); ?></td>
-                </tr>
-             <?php } ?>
-            <tr>
-                <td class="label">Tags:</td>
-                <td>
+                <td class="title"><?php echo h($userSite['UserSite']['SiteDescr']); ?>&nbsp;</td>
+
+                <td class="extended-col"><?php echo h($userSite['UserSite']['ExtendedDesc']); ?>&nbsp;</td>
+
+                <td class="tags-col">
                     <?php foreach($userSite['UserSiteTag'] as $theTag) {   ?>
                         <?php echo $theTag['Tag']; ?>
-                    <?php  } ?>
+                    <?php  } ?>&nbsp;
+                </td>
+
+                <td class="post-date"><?php echo date("Y-m-d", strtotime($userSite['UserSite']['OrigPostingTime'])); ?>&nbsp;</td>
+
+                <td class="message-col"><?php echo $userSite['Url']['ErrorText']; ?>&nbsp;
+                    <?php if (!empty($userSite['Url']['RedirectLocation'])) { ?>
+                        <?php echo $this->Html->link($userSite['Url']['RedirectLocation'], $userSite['Url']['RedirectLocation'], array('class' => 'redirect-url')); ?>
+
+                    <?php } ?></td>
+                <td class="actions">
+
+                    <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $userSite['UserSite']['UserSiteID'])); ?>
+
+                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $userSite['UserSite']['UserSiteID']), null, __('Are you sure you want to delete # %s?', $userSite['UserSite']['UserSiteID'])); ?>
+
+                    <?php if (!empty($userSite['Url']['RedirectLocation'])) {  ?>
+                        <span class="chgToRedir"><a class="changeToRedirect" data-url="<?php echo $userSite['UserSite']['URLID']; ?>">Chg URL to Redir Loc</a></span>
+                    <?php } ?>
+
                 </td>
             </tr>
-            <tr>
-                <td class="label">Date Posted:</td>
-                <td><?php echo h($userSite['UserSite']['OrigPostingTime']); ?></td>
-            </tr>
-            <tr>
-                <td class="label">Message:</td>
-                <td><?php echo $userSite['Url']['ErrorText']; ?></td>
-            </tr>
-            <?php if (!empty($userSite['Url']['RedirectLocation'])) {  ?>
-                <tr>
-                    <td class="label">Redirect Location:</td>
-                    <td><?php echo $this->Html->link($userSite['Url']['RedirectLocation'], $userSite['Url']['RedirectLocation']); ?></td>
-                </tr>
-            <?php } ?>
-            
-        </table>
-        <div class="actions">
-            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $userSite['UserSite']['UserSiteID'])); ?>
-            <?php if (!empty($userSite['Url']['RedirectLocation'])) {  ?>
-                <a class="changeToRedirect" data-url="<?php echo $userSite['UserSite']['URLID']; ?>">Change URL to Redirect Location</a>
-            <?php } ?>   
-            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $userSite['UserSite']['UserSiteID']), null, __('Are you sure you want to delete # %s?', $userSite['UserSite']['UserSiteID'])); ?>
-            <div class="output-message" data-url="<?php echo $userSite['UserSite']['URLID']; ?>"></div>
-
-        </div>
-
-    </div> <!-- one-url -->
-    <!-- HERE END ONE listing  -->
-<?php endforeach; ?>
   
+    <!-- HERE END ONE listing  -->
+        <?php endforeach; ?>
+    </table> 
     <p>
         <?php
         echo $this->Paginator->counter(array(
