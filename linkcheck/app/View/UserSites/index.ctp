@@ -4,10 +4,7 @@
     </h2>
     SORT BY:
 
-            <?php echo $this->Paginator->sort('UserSiteID'); ?>
-            <?php echo $this->Paginator->sort('UserID'); ?>
-            <?php echo $this->Paginator->sort('SiteDescr'); ?>
-            <?php echo $this->Paginator->sort('URLID'); ?>
+            <?php echo $this->Paginator->sort('SiteDescr', 'Title'); ?>
 
             <?php echo $this->Paginator->sort('ExtendedDesc'); ?>
             <?php echo $this->Paginator->sort('OrigPostingTime'); ?>

@@ -47,7 +47,7 @@ if (array_key_exists ('valid_user', $_SESSION)) {
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Welcome, <?php echo $username; ?></h1>
+			<h1>Welcome, <?php echo $username; ?> - viewing your sites</h1>
 		</div>
 		<div id="content">
 

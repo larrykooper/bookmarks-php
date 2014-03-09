@@ -1,4 +1,5 @@
 <?php
+$validated = 0;
 if (array_key_exists('valid_user', $_SESSION))
 {
     $validated = 1;
