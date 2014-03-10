@@ -5,8 +5,6 @@
     </h2>
     <span class="codes">
         <?php
-        echo $this->Html->link('NULL',
-    array('controller' => 'UserSites', 'action' => 'index', NULL), array('class' => 'code-link'));
         echo $this->Html->link('0',
     array('controller' => 'UserSites', 'action' => 'index', 0), array('class' => 'code-link'));
         echo $this->Html->link('200',
