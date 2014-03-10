@@ -39,6 +39,7 @@ class UserSitesController extends AppController {
  * @return void
  */
     public function index($http_code = null) {
+        $this->log("Message 57: In index action", 'debug');
         $this->log("http code: $http_code", 'debug');
         $this->UserSite->recursive = 1;
         $this->UserSite->unbindModel( array('belongsTo' => array('User')));
@@ -158,5 +159,5 @@ class UserSitesController extends AppController {
         } else {
             $this->Session->setFlash(__('The user site could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect($this->request->data['redirect-url']);
     }}

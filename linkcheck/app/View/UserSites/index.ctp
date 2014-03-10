@@ -1,3 +1,4 @@
+<?php $myUrl = Router::url(null, true); ?>
 <div class="userSites index">
     <h2 class="page-title">
         <?php echo __('Larrybeth Bookmarks Link Checker Report'); ?>
@@ -54,12 +55,8 @@
             <th class="post-date"><?php echo $this->Paginator->sort('OrigPostingTime', 'Posting Date'); ?></th>
             <th class="message-col">Message</th>
             <th class="actions">Actions</th>
-
         </tr>
         <?php foreach ($userSites as $userSite): ?>
-
-            <!--  HERE BEGIN ONE listing -->
-
             <tr class="one-url" data-url="<?php echo $userSite['UserSite']['URLID']; ?>">
                 <td class="url-col">
                     <?php echo $this->Html->link($userSite['Url']['URL'], $userSite['Url']['URL'], array('class' => 'url-link')); ?>&nbsp;
@@ -76,17 +73,23 @@
                 </td>
 
                 <td class="post-date"><?php echo date("Y-m-d", strtotime($userSite['UserSite']['OrigPostingTime'])); ?>&nbsp;</td>
-
                 <td class="message-col"><?php echo $userSite['Url']['ErrorText']; ?>&nbsp;
                     <?php if (!empty($userSite['Url']['RedirectLocation'])) { ?>
                         <?php echo $this->Html->link($userSite['Url']['RedirectLocation'], $userSite['Url']['RedirectLocation'], array('class' => 'redirect-url')); ?>
 
                     <?php } ?></td>
                 <td class="actions">
-
                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $userSite['UserSite']['UserSiteID'])); ?>
 
-                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $userSite['UserSite']['UserSiteID']), null, __('Are you sure you want to delete # %s?', $userSite['UserSite']['UserSiteID'])); ?>
+                    <form action="/larrybeth/bookmarks/linkcheck/UserSites/delete/<?php echo $userSite['UserSite']['UserSiteID']; ?>" name="post_<?php echo $userSite['UserSite']['UserSiteID']; ?>" id="post_<?php echo $userSite['UserSite']['UserSiteID']; ?>" style="display:none;" method="post">        
+                        <input type="hidden" name="_method" value="POST"/>
+                        <input type="hidden" name="redirect-url" value="<?php echo $myUrl ?>">
+                    </form>
+                    <a class="delete-button" onclick=" if (confirm(&quot;Are you sure?&quot;)) {
+                        document.post_<?php echo $userSite['UserSite']['UserSiteID']; ?>.submit(); }
+                        event.returnValue = false; return false;">
+                            Delete
+                    </a>
 
                     <?php if (!empty($userSite['Url']['RedirectLocation'])) {  ?>
                         <span class="chgToRedir"><a class="changeToRedirect" data-url="<?php echo $userSite['UserSite']['URLID']; ?>">Chg URL to Redir Loc</a></span>
@@ -94,8 +97,6 @@
 
                 </td>
             </tr>
-  
-    <!-- HERE END ONE listing  -->
         <?php endforeach; ?>
     </table> 
     <p>
