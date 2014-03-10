@@ -47,7 +47,7 @@
     </span>
     <table class="sites-table">
         <tr>
-            <th class="url-col">URL</th>
+            <th class="url-col"><?php echo $this->Paginator->sort('Url.URL', 'URL'); ?></th>
             <th class="title"><?php echo $this->Paginator->sort('SiteDescr', 'Title'); ?></th>
 
             <th class="extended-col"><?php echo $this->Paginator->sort('ExtendedDesc'); ?></th>
