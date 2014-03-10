@@ -49,7 +49,6 @@ class UserSitesController extends AppController {
         }
         $data = $this->Paginator->paginate(
             'UserSite', $paginator_conditions);
-
         $this->set('userSites', $data);
     }
 
