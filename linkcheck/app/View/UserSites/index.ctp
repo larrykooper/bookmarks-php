@@ -3,13 +3,29 @@
     <h2 class="page-title">
         <?php echo __('Larrybeth Bookmarks Link Checker Report'); ?>
     </h2>
-    HTTP CODE:
+    <span class="code-label">
+        THESE ARE BAD:
+    </span>
     <span class="codes">
         <?php
         echo $this->Html->link('0',
     array('controller' => 'UserSites', 'action' => 'index', 0), array('class' => 'code-link'));
-        echo $this->Html->link('200',
-    array('controller' => 'UserSites', 'action' => 'index', 200), array('class' => 'code-link'));
+        echo $this->Html->link('410',
+    array('controller' => 'UserSites', 'action' => 'index', 410), array('class' => 'code-link'));
+        echo $this->Html->link('502',
+    array('controller' => 'UserSites', 'action' => 'index', 502), array('class' => 'code-link'));
+        ?>
+    <span class="code-label">
+        USUALLY BAD:
+    </span>
+        <?php
+        echo $this->Html->link('500',
+    array('controller' => 'UserSites', 'action' => 'index', 500), array('class' => 'code-link'));
+        ?>
+    <span class="code-label">
+        THESE ARE REDIRECTS:
+    </span>
+        <?php
         echo $this->Html->link('301',
     array('controller' => 'UserSites', 'action' => 'index', 301), array('class' => 'code-link'));
         echo $this->Html->link('302',
@@ -18,27 +34,38 @@
     array('controller' => 'UserSites', 'action' => 'index', 303), array('class' => 'code-link'));
         echo $this->Html->link('307',
     array('controller' => 'UserSites', 'action' => 'index', 307), array('class' => 'code-link'));
+        ?>
+    <span class="code-label">
+        SITE EXISTS, PAGE DOES NOT:
+    </span>
+         <?php
+        echo $this->Html->link('404',
+    array('controller' => 'UserSites', 'action' => 'index', 404), array('class' => 'code-link'));
+        ?>
+    <span class="code-label">
+        THESE REQUIRE INVESTIGATION:
+    </span>
+         <?php
         echo $this->Html->link('400',
     array('controller' => 'UserSites', 'action' => 'index', 400), array('class' => 'code-link'));
         echo $this->Html->link('401',
     array('controller' => 'UserSites', 'action' => 'index', 401), array('class' => 'code-link'));
         echo $this->Html->link('403',
     array('controller' => 'UserSites', 'action' => 'index', 403), array('class' => 'code-link'));
-        echo $this->Html->link('404',
-    array('controller' => 'UserSites', 'action' => 'index', 404), array('class' => 'code-link'));
+        echo $this->Html->link('503',
+    array('controller' => 'UserSites', 'action' => 'index', 503), array('class' => 'code-link'));
+        ?>
+    <span class="code-label">
+        THESE ARE USUALLY OK:
+    </span>
+        <?php
+        echo $this->Html->link('200',
+    array('controller' => 'UserSites', 'action' => 'index', 200), array('class' => 'code-link'));
         echo $this->Html->link('405',
     array('controller' => 'UserSites', 'action' => 'index', 405), array('class' => 'code-link'));
         echo $this->Html->link('406',
     array('controller' => 'UserSites', 'action' => 'index', 406), array('class' => 'code-link'));
-        echo $this->Html->link('410',
-    array('controller' => 'UserSites', 'action' => 'index', 410), array('class' => 'code-link'));
-        echo $this->Html->link('500',
-    array('controller' => 'UserSites', 'action' => 'index', 500), array('class' => 'code-link'));
-        echo $this->Html->link('502',
-    array('controller' => 'UserSites', 'action' => 'index', 502), array('class' => 'code-link'));
-        echo $this->Html->link('503',
-    array('controller' => 'UserSites', 'action' => 'index', 503), array('class' => 'code-link'));
-       ?>
+        ?>
     </span>
     <span class="sort-by-code">
         SORT BY
