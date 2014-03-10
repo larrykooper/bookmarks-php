@@ -3,6 +3,7 @@
     <h2 class="page-title">
         <?php echo __('Larrybeth Bookmarks Link Checker Report'); ?>
     </h2>
+    HTTP CODE:
     <span class="codes">
         <?php
         echo $this->Html->link('0',
@@ -41,7 +42,7 @@
     </span>
     <span class="sort-by-code">
         SORT BY
-        <?php echo $this->Paginator->sort('Url.HttpCode', 'Httpcode'); ?>
+        <?php echo $this->Paginator->sort('Url.HttpCode', 'HTTP Code'); ?>
     </span>
     <table class="sites-table">
         <tr>
