@@ -139,4 +139,5 @@
         echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
     ?>
     </div>
+    <?php echo $this->Html->link( "Logout", array('controller' => 'Users','action'=>'logout') ); ?>
 </div>

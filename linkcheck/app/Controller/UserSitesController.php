@@ -23,14 +23,7 @@ class UserSitesController extends AppController {
     private $loggedInUser;
 
     public function beforeFilter() {
-        require('../../../ckuser.php');
-        if (!$validated) {
-             $this->log("not validated", 'debug');
-             // If not validated, I want to redirect to some "jail page"
-             return $this->redirect(array('controller' => 'some_controller', 'action' => 'index'));
-        } else {
-            $this->loggedInUser = $theusername;
-        }
+        parent::beforeFilter();
     }
 
 /**
@@ -39,8 +32,13 @@ class UserSitesController extends AppController {
  * @return void
  */
     public function index($http_code = null) {
+
         $this->log("Message 57: In index action", 'debug');
+        $authUser = $this->Session->read('Auth.User');
+        $this->log($authUser, 'debug');
+
         $this->log("http code: $http_code", 'debug');
+        $this->loggedInUser = $authUser['UserID'];
         $this->UserSite->recursive = 1;
         $this->UserSite->unbindModel( array('belongsTo' => array('User')));
         $paginator_conditions = array('UserSite.UserID' => $this->loggedInUser, "NOT ISNULL(URL.LastChecked)");
@@ -62,6 +60,10 @@ class UserSitesController extends AppController {
     public function showForAllUsers() {
         $this->UserSite->recursive = 1;
         $this->set('userSites', $this->Paginator->paginate());
+    }
+
+    public function loggedOut () {
+
     }
 
 /**

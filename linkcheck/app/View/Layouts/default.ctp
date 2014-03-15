@@ -49,19 +49,23 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <?php
-$username = '';
-if (array_key_exists ('valid_user', $_SESSION)) {
-    $username = $_SESSION['valid_user'];
+$authUser = $this->Session->read('Auth.User');
+$username = $authUser['UserID'];
+if ($username == '') {
+    $welcome = "You are not logged in.";
+} else {
+    $welcome = "Welcome, $username";
 }
 ?>
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Welcome, <?php echo $username; ?> - viewing your sites</h1>
+			<h1><?php echo $welcome; ?></h1>
 		</div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
+	 	    <?php echo $this->Session->flash('auth'); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>

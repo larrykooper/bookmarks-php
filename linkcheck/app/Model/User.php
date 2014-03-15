@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 /**
  * User Model
  *
@@ -20,7 +21,6 @@ class User extends AppModel {
  *
  * @var string
  */
-	public $primaryKey = 'UserID';
 
 /**
  * Display field
@@ -29,6 +29,20 @@ class User extends AppModel {
  */
 	public $displayField = 'UserID';
 
+    public $validate = array(
+        'UserID' => array(
+            'required' => array(
+                'rule' => array('notEmpty'),
+                'message' => 'A username is required'
+            )
+        ),
+        'Password' => array(
+            'required' => array(
+                'rule' => array('notEmpty'),
+                'message' => 'A password is required'
+            )
+        )
+    );
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
