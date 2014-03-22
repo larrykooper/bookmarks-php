@@ -264,6 +264,7 @@ if (($Mode == "save") or ($Mode == "save_prevpost") or ($Mode == "save_newpost")
 	// We use htmlspecialchars to prevent XSS	
 	$frmUrl = htmlspecialchars($frmUrl, ENT_QUOTES, 'UTF-8');
 	$frmDescr = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
+	$frmDescr = ltrim($frmDescr);
 	$frmTagString = htmlspecialchars($_POST['tags'], ENT_QUOTES, 'UTF-8');
 	$frmExtended = htmlspecialchars($_POST['extended'], ENT_QUOTES, 'UTF-8');
 	$frmInRotation = $_POST['cb_inrotation'];
