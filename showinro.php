@@ -40,7 +40,7 @@ else
 if ($start <> 0)
 {
 	$newstart = $start - $perpage;
-    print '<a href="bookmarks.php?'.$MyQS .$Delim.'start='.$newstart.'" class="rt">< previous</a>';
+    print '<a href="showinro.php?'.$MyQS .$Delim.'start='.$newstart.'" class="rt">< previous</a>';
 }
 else
 {
@@ -52,7 +52,7 @@ else
 if (($start + $perpage) < $total_rows)
 {
 	$newstart = $start + $perpage;
-    print '<a href="bookmarks.php?'. $MyQS .$Delim.'start='.$newstart.'" class="bodyl">next ></a>';
+    print '<a href="showinro.php?'. $MyQS .$Delim.'start='.$newstart.'" class="bodyl">next ></a>';
 }
 else
 {
