@@ -608,8 +608,7 @@ for ($i=0; $i <$num_results; $i++)
         print "</a>";   
     }
     print "</td>";
-    //if ($validated)
-    //{     
+
     // Display edit this item or copy this item 
 
     if ($userdisp == $theusername)
@@ -634,7 +633,6 @@ for ($i=0; $i <$num_results; $i++)
         print "\" class=\"bodyt\">Copy</a>";
     }
     print " this item</td></tr>";
-    //}
      
 } // end of for $i
 ?>
