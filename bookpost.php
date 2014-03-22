@@ -38,7 +38,7 @@ $myheader = <<< End_Of_Header
 	<head>
 	<title>Bookmark Post Page</title>
 	<link rel="stylesheet" type="text/css" href="bkm.css">
-	<script type="text/javascript" src="/larrybeth/linkcheck/js/jquery-2.1.0.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js"></script>
 	</head>
 	<body>
 End_Of_Header;
