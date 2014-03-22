@@ -354,6 +354,7 @@ if ($Mode == "save")
 {   
     // Get data from form
     $frmDescr = $_POST['description'];  
+    $frmDescr = addslashes($frmDescr);
     $frmExtended = $_POST['extended'];
     $frmTagString = $_POST['tags'];
     $frmSiteEditing = $_POST['siteediting'];
