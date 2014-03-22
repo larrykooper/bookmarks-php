@@ -4,7 +4,7 @@ session_start();
 $validated = 0;
 if (array_key_exists('valid_user', $_SESSION)) {
     $validated = 1;
-    error_log("ckuser: user found in session");
+    //error_log("ckuser: user found in session");
 }
 else
 // username is not in the session
