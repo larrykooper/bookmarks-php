@@ -38,6 +38,7 @@ $myheader = <<< End_Of_Header
 	<head>
 	<title>Bookmark Post Page</title>
 	<link rel="stylesheet" type="text/css" href="bkm.css">
+	<script type="text/javascript" src="/larrybeth/linkcheck/js/jquery-2.1.0.js"></script>
 	</head>
 	<body>
 End_Of_Header;
@@ -385,5 +386,6 @@ else
 	require('bkbottom.php');
 }
 ?>
+<script type="text/javascript" src="js/bookpost.js"></script>
 </body>
 </html> 
