@@ -8,20 +8,8 @@ if (!$validated)
 ?>
 <?php
 // ---------------------------------------------------------------------------------------
-function TagString ($theResult)
-{ 
-    $TString = "";
-    $num_results = mysql_num_rows($theResult);  
-    for ($i=0; $i < $num_results; $i++)
-    {
-        $myrow = mysql_fetch_array($theResult); 
-        $aTag = $myrow['Tag'];  
-        $bTag = htmlentities($aTag);  // This changes special chars into their HTML equivalents 
-        $TString = $TString . $bTag . " ";      
-    }
-    return $TString;
-}
-//End Function TagString
+require('helpers.php');
+
 // ---------------------------------------------------------------------------------------
 function display_pnt() 
 // Display previous, next, and total
@@ -136,23 +124,7 @@ switch ($MySortKey)
             $MyQueryPart4 = " ORDER BY UserSite.SiteDescr"; 
             break;
     }       
-
-// Examine Form Post Variables
-if ($_POST['submit'] == "save") 
-{
-    $Mode = "save";
-}
-elseif ($_POST['submit'] == "delete")
-{
-    $Mode = "delete";
-    $Deleting = 1;
-    $SiteToDelete = $_POST['siteediting'];
-}
-else 
-{
-    $Mode = "notsave";
-}   
-require_once( 'db_con.php' );
+require_once('db_con.php');
 // Set page title
 $myTitle = "Bookmarks LarryBeth Style";
 ?>
@@ -238,173 +210,6 @@ print "</div>";
 echo '<p class="help"> Welcome, '.$theusername.'.  ';
 ?>
 You are now viewing the bookmarks of <a href="bookmarks.php?user=<?php echo $userdisp?> "class='body' ><?php echo $wantedUser?></a>.</p>
-
-<?php
-
-// -----------------------------------------------------------------------------------------
-If ($Deleting)
-{
-    $myDelStmt1 = "DELETE FROM UserSiteTag WHERE URLID =" . $SiteToDelete . " AND UserID='". $theusername ."'";     
-    $result6 = mysql_query($myDelStmt1) or die (mysql_error()."<br />Couldn't execute query: $myDelStmt1"); 
-    $myDelStmt2 = "DELETE FROM UserSite WHERE URLID =" . $SiteToDelete . " AND UserID ='" . $theusername ."'";
-    $result6 = mysql_query($myDelStmt2) or die (mysql_error()."<br />Couldn't execute query: $myDelStmt2"); 
-}  // end if deleting
-// -----------------------------------------------------------------------------------------
-
-// Display editing form if we need to
-If ($Editing)  
-{
-    //print "editing";              
-    $querySiteInfo = "SELECT UserSiteID, SiteDescr, ExtendedDesc, InRotation, Private, ul.URL FROM UserSite us INNER JOIN URL ul ON us.URLID = ul.URLID WHERE us.URLID=" . $SiteToEdit  . " AND UserID='". $theusername ."'";
-    $querySTags =  "SELECT Tag FROM UserSiteTag WHERE URLID=" . $SiteToEdit . " AND UserID='". $theusername ."' ORDER BY TagOrder";     
-    $result = mysql_query($querySiteInfo) or die (mysql_error()."<br />Couldn't execute query: $querySiteInfo");
-    $row = mysql_fetch_array($result);  
-    $siteSiteName = $row['SiteDescr'];
-    $siteURL = $row['URL']; 
-    $siteExtended = $row['ExtendedDesc'];
-    $siteInRo = $row['InRotation'];
-    $sitePrivate = $row['Private'];
-?>
-    <fieldset class="chg">
-    <legend>Edit this bookmark</legend>
-    <form method="POST" action="bookmarks.php" id="form"> 
-<table>
-<tr><td align="right"><label for="url">URL:</label></td>        
-<td>
-<?php
-    print $siteURL;
-    print "<input type=\"hidden\" name=\"siteediting\" value=\"";   
-    print $SiteToEdit; 
-    print "\">";
-?>
-</td></tr>  
-
-<tr><td align="right"><label for="description">Description:</label></td>
-<td>
-<?php
-    print "<input type=\"text\" name=\"description\" value=\""; 
-    print stripslashes($siteSiteName);
-    print "\" size=80>";
-?>  
-</td></tr>
-        
-<tr><td align="right"><label for="extended">Extended:</label></td>
-<td>
-<?php
-    print "<input type=\"text\" name=\"extended\" value=\"";
-    print stripslashes($siteExtended);
-    print "\" size=80> (optional)"; 
-?>
-</td></tr>
-
-<tr><td align="right"><label>Tags:</label></td>
-<td>
-<?php
-    print "<input type=\"text\" name=\"tags\" value=\"";    
-    $result4 = mysql_query($querySTags) or die (mysql_error()."<br />Couldn't execute query: $querySTags");
-    $theTagString = TagString($result4);     
-    print $theTagString;     
-    print "\"   size=80><nobr> (space separated)</nobr>";
-?>
-</td></tr>
-
-<?php
-if ($siteInRo)
-    $ckdInro = "checked";
-else
-    $ckdInro = "";
-if ($sitePrivate)
-    $ckdPriv = "checked";
-else 
-    $ckdPriv = "";      
-?>      
-<tr>&nbsp;</tr>
-<tr><td align="right"></td>
-<td>
-<input type="checkbox" <?php echo $ckdInro?>  name="cb_inrotation" value="y"> 
-<label for="cb_inrotation">In Rotation</label> -- Check here if you would like to regularly visit this site<br /><br /> 
-</td></tr>
-<tr><td align="right"></td>
-<td>
-<input type="checkbox" <?php echo $ckdPriv?> name="cb_private" value="y"> 
-<label for="cb_private">Private</label> -- Do not display this bookmark to other users<br /><br /> 
-</td></tr>
-
-<?php
-    print "<input type=\"hidden\" name=\"oldtagstring\" value=\"";
-    print $theTagString;
-    print "\">";
-    print "<tr><td align=\"right\"><input type=submit name=\"submit\" value='save'>";
-?>
-</td>
-<td>or
-<input type=submit name="submit" value='delete'>
-</td></tr>  
-</table>
-</form> 
-</fieldset>
-<br /><br />    
-<?php
-
-// Done displaying editing form
-} // if editing
-// -----------------------------------------------------------------------------------------
-// Now save stuff if we need to 
-if ($Mode == "save") 
-{   
-    // Get data from form
-    $frmDescr = $_POST['description'];  
-    $frmDescr = addslashes($frmDescr);
-    $frmExtended = $_POST['extended'];
-    $frmTagString = $_POST['tags'];
-    $frmSiteEditing = $_POST['siteediting'];
-    $frmInRotation = $_POST['cb_inrotation'];
-    $frmPrivate = $_POST['cb_private'];
-    $OldTags = $_POST['oldtagstring'];  
-    
-    if ($frmInRotation == "y") 
-        $dbInro = 1;
-    else 
-        $dbInro = 0;
-    if ($frmPrivate == "y")
-        $dbPriv = 1;
-    else
-        $dbPriv = 0;    
-    
-    // Update UserSite table
-    $myUpStmt = "UPDATE UserSite SET SiteDescr = '" . $frmDescr . "', ExtendedDesc = '" . $frmExtended . "', InRotation = " . $dbInro . ", Private = ". $dbPriv . " WHERE URLID = " . $frmSiteEditing . " AND UserID = '$theusername'"; 
-    $result5 = mysql_query($myUpStmt) or die (mysql_error()."<br />Couldn't execute query: $myUpStmt"); 
-    // Update tags if we need to    
-    if ($frmTagString <> $OldTags) 
-    { 
-        $myDelStmt = "DELETE FROM UserSiteTag WHERE URLID =" . $frmSiteEditing . " AND UserID='". $theusername ."'";        
-        $result6 = mysql_query($myDelStmt) or die (mysql_error()."<br />Couldn't execute query: $myDelStmt");           
-        //  parse out the tags and write them to db              
-        $MyArray = explode(' ',$frmTagString);
-        $tagcount = 1;
-        foreach ($MyArray as $theTag)
-        {   
-            If (strlen($theTag) > 0)
-            {       
-                $queryCheckDup = "SELECT Tag FROM UserSiteTag WHERE UserID = '$theusername' AND URLID = $frmSiteEditing 
-AND Tag = '$theTag'";
-                $resultD = mysql_query($queryCheckDup) or die (mysql_error()."<br />Couldn't execute query: $queryCheckDup");   
-                $my_num = mysql_num_rows($resultD); 
-                if ($my_num == 0) 
-                {
-                    // do the insert                
-                    $myInsStmt = "INSERT INTO UserSiteTag (UserID, URLID, Tag, TagOrder) VALUES ('" . $theusername ."',". $frmSiteEditing ." , '". $theTag . "', ". $tagcount .")";             
-                    $result7 = mysql_query($myInsStmt) or die (mysql_error()."<br />Couldn't execute query: $myInsStmt");       
-                    $tagcount = $tagcount + 1;  
-                }               
-            }               
-        }  // ends foreach loop      
-    }   // if new tags differ from old tags         
-} // if mode = save
-
-// End of saving stuff
-// ----------------------------------------------------------------------------------------
-?>
 <?php
 // Display main contents (bookmarks)
 
@@ -505,6 +310,7 @@ if ($userdisp == $theusername)
 ?>
 </tr>
 <?php
+$currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 for ($i=0; $i <$num_results; $i++) 
 {   
 // Display one bookmark
@@ -614,8 +420,11 @@ for ($i=0; $i <$num_results; $i++)
     if ($userdisp == $theusername)
     {
         // edit
-        print "<td colspan=\"3\" class=\"rtside\"><a href=\"bookmarks.php?editsite=";   
+        print "<td colspan=\"3\" class=\"rtside\">";
+        print "<a href=\"editpost.php?editsite=";
         print $myURLID;
+        print "&redirectUrl=";
+        print urlencode($currentURL);
         print "\" class=\"bodyt\">Edit</a>";
     }
     else 
