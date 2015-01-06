@@ -585,15 +585,15 @@ for ($i=0; $i <$num_results; $i++)
 	//{
 	// Display edit this item or copy this item
 
-	if ($userdisp == $theusername)
-	{
-		// edit
-		print "<td colspan=\"3\" class=\"rtside\"><a href=\"bookmarks.php?editsite=";
+	if ($userdisp == $theusername) {
+        // edit
+		print "<td colspan=\"3\" class=\"rtside\">";
+		print "<a href=\"editpost.php?editsite=";
 		print $myURLID;
+		print "&redirectUrl=";
+        print urlencode($currentURL);
 		print "\" class=\"bodyt\">Edit</a>";
-	}
-	else
-	{
+	} else {
 		// copy
 		// Get actual URL
 		$URLQuery = "Select URL FROM URL Where URLID =" . $myURLID;
