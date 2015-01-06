@@ -41,9 +41,13 @@ if ($Mode == "save")
     $frmSiteEditing = $_POST['siteediting'];
     if (array_key_exists('cb_inrotation', $_POST)) {
         $frmInRotation = $_POST['cb_inrotation'];
+    } else {
+        $frmInRotation = 'n';
     }
     if (array_key_exists('cb_private', $_POST)) {
         $frmPrivate = $_POST['cb_private'];
+    } else {
+        $frmPrivate = 'n';
     }
     $OldTags = $_POST['oldtagstring'];
 
