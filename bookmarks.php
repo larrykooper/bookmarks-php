@@ -66,6 +66,8 @@ $Deleting = 0;
 $Userfilter = 0;
 $wantedUser = "";
 $wantedTagString = "";
+$MySortKey = "";
+$start = 0;
 
 foreach ($_GET as $k => $v)
 {
