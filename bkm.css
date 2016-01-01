@@ -1,21 +1,23 @@
-body{
-background-color: #ffffff;
-background-image: url(images/bgrt.jpg); 
-background-repeat: repeat-y;
-background-position: right;
-color: #000000;
-margin: 0px;
-font-family: Verdana, Arial, sans-serif;
+body {
+	background-color: #ffffff;
+	background-image: url(images/bgrt.jpg); 
+	background-repeat: repeat-y;
+	background-position: right;
+	color: #000000;
+	margin: 0px;
+	font-family: Verdana, Arial, sans-serif;
 }
-#form{
-background: #ffffff;
-text-align: left;
-margin-left: 10px;
+
+form {
+	background: #ffffff;
+	text-align: left;
+	margin-left: 10px;
 }
-label{
-color: #617d24;
-font-weight: bold;
-padding: 2px;
+
+label {
+    color: #617d24;
+    font-weight: bold;
+    padding: 2px;
 }
 label.alter{
 	text-align: right;
@@ -314,16 +316,19 @@ th {
 	padding-left: 20px;
 	text-align: right;
 }
+
 .rttopu {
 	border-bottom: 1px solid #fab057;
 	text-align: right;
 	padding-left: 20px;
 }
+
 .below {
 	padding-right: 25px;
 	padding-bottom: 5px;
 	border-bottom: 1px solid #94b057;
 }
+
 li {
 	list-style-image: url(images/greendot.jpg);
 	padding-bottom: 5px;
