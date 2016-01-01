@@ -58,7 +58,7 @@ function show_form ($urlstring, $descstring, $extenstring, $tagstring)
 ?> 
 <fieldset class="chg">
 <legend>Post a site</legend>  
-<form method="POST" action="bookpost.php" id="form"> 
+<form method="POST" action="bookpost.php"> 
     <table> <tr><td align="right"><label for="url">URL:</label></td><td>
 <?php    
     print "<input type=\"text\" name=\"url\" value=\"";
@@ -72,7 +72,7 @@ function show_form ($urlstring, $descstring, $extenstring, $tagstring)
     <tr><td align="right"><label for="name">Name:</label></td>
     <td>
 <?php
-    print "<input type=\"text\" name=\"description\" value=\"";
+    print "<input type=\"text\" class=\"freshPost\" name=\"description\" value=\"";
     print $descstring;
     print "\" size=80 id=\"titleField\">";
 ?>
@@ -118,13 +118,15 @@ function show_form ($urlstring, $descstring, $extenstring, $tagstring)
 <?php
 }  // end function show_form   
 //---------------------------------------------------------------------------------------
-function show_form_fixedurl ($urlstring, $descstring, $extenstring, $tagstodisp, $oldtagstring, $buttontext, $SiteURLID)
+function show_form_fixedurl ($urlstring, $descstring, $extenstring, $tagstodisp, $oldtagstring, $buttontext, $SiteURLID, $siteInRotation, $sitePrivate)
 { 
+    
 ?> 
+
 <fieldset class="chg">
 <legend>Fix a posting:</legend>  
   
-<form method="POST" action="bookpost.php" id="form"> 
+<form method="POST" action="bookpost.php"> 
     <table> <tr><td align="right"><label for="url">URL</label></td><td>
 <?php
     print $urlstring;
@@ -148,8 +150,28 @@ function show_form_fixedurl ($urlstring, $descstring, $extenstring, $tagstodisp,
     print "<input type=\"text\" name=\"tags\" value=\"";
     print $tagstodisp;
     print "\"   size=80> (space separated)";
+
+    if ($siteInRotation)
+        $ckdInro = "checked";
+    else
+        $ckdInro = "";
+    if ($sitePrivate)
+        $ckdPriv = "checked";
+    else 
+        $ckdPriv = "";    
 ?>
-        </td></tr><tr><td>
+        </td></tr>
+        <tr><td></td><td>
+<input type="checkbox" <?php echo $ckdInro?>  name="cb_inrotation" value="y"> 
+<label for="cb_inrotation">In Rotation</label> -- Check here if you would like to regularly visit this site<br /><br /> 
+</td></tr>
+<tr><td></td>
+<td>
+<input type="checkbox" <?php echo $ckdPriv?> name="cb_private" value="y"> 
+<label for="cb_private">Private</label> -- Do not display this bookmark to other users<br /><br /> 
+</td></tr>
+        
+        <tr><td>
 <?php
 
     print "<input type=submit name=\"submit\" value='";
@@ -171,6 +193,7 @@ function show_form_fixedurl ($urlstring, $descstring, $extenstring, $tagstodisp,
     print "\">";
 ?>
 </form>
+</fieldset>
 <?php    
 }  // end function show_form_fixedurl   
 //---------------------------------------------------------------------------------------
@@ -297,7 +320,7 @@ if ($Mode == "save")
         // Now see if this user has
         $rowd = mysql_fetch_array($resultd);
         $myURLID = $rowd['URLID'];
-        $querySiteInfo = "SELECT UserSiteID, SiteDescr, URLID, ExtendedDesc FROM UserSite WHERE URLID=" . $myURLID . " AND UserID='". $theusername ."'";    
+        $querySiteInfo = "SELECT UserSiteID, SiteDescr, URLID, ExtendedDesc, InRotation, Private FROM UserSite WHERE URLID=" . $myURLID . " AND UserID='". $theusername ."'";    
         $resultg = mysql_query($querySiteInfo) or die (mysql_error()."<br />Couldn't execute query: $querySiteInfo");
         $thenum = mysql_num_rows($resultg);
         if ($thenum == 0)
@@ -308,6 +331,7 @@ if ($Mode == "save")
         else
         {
             // this user has posted this URL before
+           
             show_header();
             print "You have posted this URL before.<br>";
             print "Instructions: Make whatever changes you would like in EITHER your previous post or your new post.";
@@ -316,12 +340,14 @@ if ($Mode == "save")
             $row = mysql_fetch_array($resultg);
             $siteSiteName = $row['SiteDescr'];
             $siteExtended = $row['ExtendedDesc'];
+            $siteInRotation = $row['InRotation'];
+            $sitePrivate = $row['Private'];
             $querySTags =  "SELECT Tag FROM UserSiteTag WHERE URLID=" . $myURLID . " AND UserID='". $theusername ."'";
             $result4 = mysql_query($querySTags) or die (mysql_error()."<br />Couldn't execute query: $querySTags");
             $theTagString = TagString($result4);
-            show_form_fixedurl($frmUrl, $siteSiteName, $siteExtended, $theTagString, $theTagString, "save previous", $myURLID);
+            show_form_fixedurl($frmUrl, $siteSiteName, $siteExtended, $theTagString, $theTagString, "save previous", $myURLID, $siteInRotation, $sitePrivate);
             print "<br><br>Here is your new post:<br>";
-            show_form_fixedurl($frmUrl, $frmDescr, $frmExtended, $frmTagString, $theTagString, "save new", $myURLID);
+            show_form_fixedurl($frmUrl, $frmDescr, $frmExtended, $frmTagString, $theTagString, "save new", $myURLID, $frmInRotation, $frmPrivate);
             print "</div>";
         }
     }
@@ -334,7 +360,11 @@ if (($Mode == "save_prevpost") or ($Mode == "save_newpost"))
     $frmSiteURLID = $_POST['siteediting'];
 
     $OldTags = $_POST['oldtagstring'];
-    $myUpStmt = "UPDATE UserSite SET SiteDescr = '$frmDescr', ExtendedDesc = '$frmExtended' WHERE UserID = '$theusername' AND URLID = $frmSiteURLID";
+    if ($Mode == "save_prevpost") {
+        $myUpStmt = "UPDATE UserSite SET SiteDescr = '$frmDescr', ExtendedDesc = '$frmExtended', InRotation = '$dbInro', Private = '$dbPriv' WHERE UserID = '$theusername' AND URLID = $frmSiteURLID";
+    } else {
+        $myUpStmt = "UPDATE UserSite SET SiteDescr = '$frmDescr', ExtendedDesc = '$frmExtended', InRotation = '$dbInro', Private = '$dbPriv', OrigPostingTime = NOW() WHERE UserID = '$theusername' AND URLID = $frmSiteURLID";
+    }
     $result5 = mysql_query($myUpStmt) or die (mysql_error()."<br />Couldn't execute query: $myUpStmt");
     //print "data has been updated";
     if ($frmTagString <> $OldTags)
@@ -353,7 +383,7 @@ if (($Mode == "save_prevpost") or ($Mode == "save_newpost"))
         }
     }
 // redirect
-$thelocstring = "Location: http://".$sitename."/bookmarks/bookmarks.php";
+$thelocstring = "Location: http://".$sitename."/bookmarks/bookmarks.php?user=". $nameofuser ."&sortkey=postdate"; 
 header ($thelocstring);
 exit();
 } // if mode = save_prevpost or save_newpost
