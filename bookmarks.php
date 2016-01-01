@@ -88,11 +88,9 @@ foreach ($_GET as $k => $v)
         case 'sortkey':
             $MySortKey = $v;
             break;
-        // Next 4 lines are dead code
-        case 'delete':
-            $Deleting = 1;
-            $SiteToDelete = $v;
-            break;
+        case 'dir' :
+            $myDirection = $v; 
+            break;   
         case 'start':
             $start = intval($v);
             break;
@@ -101,29 +99,39 @@ foreach ($_GET as $k => $v)
             break;
     }
 }
-if ($wantedUser == "")
+if ($wantedUser == "") {
     $wantedUser = $theusername;
-if ($MySortKey == "")
+}
+if ($MySortKey == "") {
     $MySortKey = "name";
-if ($start == "")
+}
+if ($myDirection == "") {
+    if ($MySortKey == "name") {
+        $myDirection = "ASC"; 
+    } else {
+        $myDirection = "DESC";
+    }
+}
+if ($start == "") {
     $start = 0;
+}
 
 switch ($MySortKey)
     {
         case 'name':
-            $MyQueryPart4 = " ORDER BY UserSite.SiteDescr";
+            $MyQueryPart4 = " ORDER BY UserSite.SiteDescr " . $myDirection;
             break;
         case 'postdate':
-            $MyQueryPart4 = " ORDER BY UserSite.OrigPostingTime DESC";
+            $MyQueryPart4 = " ORDER BY UserSite.OrigPostingTime " . $myDirection;
             break;
         case 'lastvisit':
-            $MyQueryPart4 = " ORDER BY LVSort DESC";
+            $MyQueryPart4 = " ORDER BY LVSort " . $myDirection;
             break;
         case 'count':
-            $MyQueryPart4 = " ORDER BY mycol DESC";
+            $MyQueryPart4 = " ORDER BY mycol " . $myDirection;
             break;
         default:
-            $MyQueryPart4 = " ORDER BY UserSite.SiteDescr";
+            $MyQueryPart4 = " ORDER BY UserSite.SiteDescr" . $myDirection;
             break;
     }
 require_once('db_con.php');
@@ -281,32 +289,42 @@ $total_rows=$t[0];
 $result = mysql_query($MyQuery) or die (mysql_error()."<br />Couldn't execute query: $MyQuery");
 $num_results = mysql_num_rows($result);
 // display code starts here
+if ($myDirection == "ASC") {
+    $displayDirection = "DESC";
+} else {
+    $displayDirection = "ASC";
+}
 display_pnt();
 ?>
 Sort by:
 <table border="0">
 <?php
-if ($Tagfilter)
-{
+if ($Tagfilter) {
 ?>
-<tr>
-<th><a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=name&tags=<?php echo $wantedTagString?>" class="bodyt">Name</a></th>
-<th class="rttopu"><a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=postdate&tags=<?php echo $wantedTagString?>" class="bodyt">Posting Date</a></th>
-<?php
-}
-else
-{
+    <tr>
+        <th><a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=name&dir=<?php echo $displayDirection?>&tags=<?php echo $wantedTagString?>" class="bodyt">Name</a>
+    </th>
+    <th class="rttopu">
+        <a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=postdate&dir=<?php echo $displayDirection?>&tags=<?php echo $wantedTagString?>" class="bodyt">Posting Date</a>
+    </th>
+    <?php
+    }
+else {
 ?>
-<tr>
-<th><a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=name" class="bodyt">Name</a></th>
-<th class="rttopu"><a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=postdate" class="bodyt">Posting Date</a></th>
+    <tr>
+    <th>
+        <a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=name&dir=<?php echo $displayDirection?>" class="bodyt">Name</a>
+    </th>
+    <th class="rttopu">
+        <a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=postdate&dir=<?php echo $displayDirection?>" class="bodyt">Posting Date</a>
+    </th>
 <?php
 }
 if ($userdisp == $theusername)
 {
 ?>
-<th class="rttopu"><a href="bookmarks.php?sortkey=lastvisit" class="bodyt">Last Visited</a></th>
-<th class="rttopu"><a href="bookmarks.php?sortkey=count" class="bodyt">Total Visits</a></th>
+<th class="rttopu"><a href="bookmarks.php?sortkey=lastvisit&dir=<?php echo $displayDirection?>" class="bodyt">Last Visited</a></th>
+<th class="rttopu"><a href="bookmarks.php?sortkey=count&dir=<?php echo $displayDirection?>" class="bodyt">Total Visits</a></th>
 <?php
 }
 ?>
