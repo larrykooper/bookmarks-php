@@ -6,7 +6,7 @@
 <a href="help.php" class="header">Help</a>
 </div>
 <div class='LBBBannerText'>
-<nobr><a class="header" href="http://www.larrybeth.com" target="blank">LarryBeth</a> style!</nobr>
+<nobr>LarryBeth style!</nobr>
 </div>
 </div>
 
