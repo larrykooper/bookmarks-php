@@ -4,7 +4,7 @@ require('ckuser.php');
 require('const1.php');
 //---------------------------------------------------------------------------------------
 function TagString ($theResult)
-{ 
+{
 
     $TString = "";
     $num_results = mysql_num_rows($theResult);
@@ -53,80 +53,21 @@ print '</p>';
 }
 
 //---------------------------------------------------------------------------------------
-function show_form ($urlstring, $descstring, $extenstring, $tagstring)
-{ 
-?> 
-<fieldset class="chg">
-<legend>Post a site</legend>  
-<form method="POST" action="bookpost.php"> 
-    <table> <tr><td align="right"><label for="url">URL:</label></td><td>
-<?php    
-    print "<input type=\"text\" name=\"url\" value=\"";
-    print $urlstring;
-    print "\" size=80>";
-?>
-    <input type="submit" name="btn_title" value="get page title">
-    </td></tr>
-    <tr><td align="right"></td>
-    <td>Example: http://www.mysite.com</td></tr>
-    <tr><td align="right"><label for="name">Name:</label></td>
-    <td>
-<?php
-    print "<input type=\"text\" class=\"freshPost\" name=\"description\" value=\"";
-    print $descstring;
-    print "\" size=80 id=\"titleField\">";
-?>
-    </td></tr>
-    <tr><td align="right"></td>
-    <td>Title of the site or name you wish to use for it</td></tr>
-    <tr><td align="right"><label for="extended">Extended:</label></td><td>
-<?php
-    print "<input type=\"text\" name=\"extended\" value=\"";
-    print $extenstring;
-    print "\" size=80> (optional)";
-?>
-</td></tr>
-<tr><td align="right"></td>
-<td>Optional extended description of the site</td></tr>
-<tr><td align="right"><label for="tags">Tags:</label></td><td>
-<?php
-    print "<input type=\"text\" name=\"tags\" value=\"";
-    print $tagstring;
-    print "\"   size=80> (space separated)";
-?>
-</td></tr>
-<tr><td align="right"></td>
-<td>Keywords you would like to use to categorize the site</td></tr>
-<tr>&nbsp;</tr>
-<tr><td align="right"></td>
-<td>
-<input type="checkbox" name="cb_inrotation" value="y"> 
-<label for="cb_inrotation">In Rotation</label> -- Check here if you would like to regularly visit this site<br /><br /> 
-</td></tr>
-<tr><td align="right"></td>
-<td>
-<input type="checkbox" name="cb_private" value="y"> 
-<label for="cb_private">Private</label> -- Do not display this bookmark to other users<br /><br /> 
-</td></tr>
-<tr><td align="right">
-<input type="hidden" name="submit_type" value="save">
-<input type=image src="images/save.jpg" align="absmiddle" name=\"submit\">
-</td></tr>
-</table>
-</form>
-</fieldset>
-<?php
-}  // end function show_form   
+function show_form ($urlstring, $descstring, $extenstring, $tagstring) {
+
+    require "templates/postSiteForm.php";
+
+}  // end function show_form
 //---------------------------------------------------------------------------------------
 function show_form_fixedurl ($urlstring, $descstring, $extenstring, $tagstodisp, $oldtagstring, $buttontext, $SiteURLID, $siteInRotation, $sitePrivate)
-{ 
-    
-?> 
+{
+
+?>
 
 <fieldset class="chg">
-<legend>Fix a posting:</legend>  
-  
-<form method="POST" action="bookpost.php"> 
+<legend>Fix a posting:</legend>
+
+<form method="POST" action="bookpost.php">
     <table> <tr><td align="right"><label for="url">URL</label></td><td>
 <?php
     print $urlstring;
@@ -157,20 +98,20 @@ function show_form_fixedurl ($urlstring, $descstring, $extenstring, $tagstodisp,
         $ckdInro = "";
     if ($sitePrivate)
         $ckdPriv = "checked";
-    else 
-        $ckdPriv = "";    
+    else
+        $ckdPriv = "";
 ?>
         </td></tr>
         <tr><td></td><td>
-<input type="checkbox" <?php echo $ckdInro?>  name="cb_inrotation" value="y"> 
-<label for="cb_inrotation">In Rotation</label> -- Check here if you would like to regularly visit this site<br /><br /> 
+<input type="checkbox" <?php echo $ckdInro?>  name="cb_inrotation" value="y">
+<label for="cb_inrotation">In Rotation</label> -- Check here if you would like to regularly visit this site<br /><br />
 </td></tr>
 <tr><td></td>
 <td>
-<input type="checkbox" <?php echo $ckdPriv?> name="cb_private" value="y"> 
-<label for="cb_private">Private</label> -- Do not display this bookmark to other users<br /><br /> 
+<input type="checkbox" <?php echo $ckdPriv?> name="cb_private" value="y">
+<label for="cb_private">Private</label> -- Do not display this bookmark to other users<br /><br />
 </td></tr>
-        
+
         <tr><td>
 <?php
 
@@ -194,8 +135,8 @@ function show_form_fixedurl ($urlstring, $descstring, $extenstring, $tagstodisp,
 ?>
 </form>
 </fieldset>
-<?php    
-}  // end function show_form_fixedurl   
+<?php
+}  // end function show_form_fixedurl
 //---------------------------------------------------------------------------------------
 function UserSite_add ($nameofuser, $descrip, $URLident, $Extendy, $tagstr, $inro, $priv)
 {
@@ -217,14 +158,14 @@ function UserSite_add ($nameofuser, $descrip, $URLident, $Extendy, $tagstr, $inr
     {
         if (strlen($theTag) > 0)
         {
-            $myInsStmt3 = "INSERT INTO UserSiteTag (UserID, URLID, Tag, TagOrder) VALUES ('" . $nameofuser ."',". $URLident . ", '". $theTag . "', ". $tagcount .")";           
+            $myInsStmt3 = "INSERT INTO UserSiteTag (UserID, URLID, Tag, TagOrder) VALUES ('" . $nameofuser ."',". $URLident . ", '". $theTag . "', ". $tagcount .")";
             $result7 = mysql_query($myInsStmt3) or die (mysql_error()."<br />Couldn't execute query: $myInsStmt3");
             $tagcount = $tagcount + 1;
         } //If tag not zero-length
     } // foreach
-// data has been saved 
-// redirect to user's bookmarks page 
-$thelocstring = "Location: http://".$sitename."/bookmarks/bookmarks.php?user=". $nameofuser ."&sortkey=postdate";   
+// data has been saved
+// redirect to user's bookmarks page
+$thelocstring = "Location: http://".$sitename."/bookmarks/bookmarks.php?user=". $nameofuser ."&sortkey=postdate";
 header ($thelocstring);
 exit();
 }
@@ -235,7 +176,7 @@ exit();
 // ENTRY POINT
 // ----------------------------------------------------------------------------------------
 
-if ($validated) 
+if ($validated)
 {
 // Get user name
 
@@ -268,7 +209,7 @@ if ($_POST['btn_title'] == "get page title")
 
     $Mode = "get_title";
 
-if (($Mode == "save") or ($Mode == "save_prevpost") or ($Mode == "save_newpost")) 
+if (($Mode == "save") or ($Mode == "save_prevpost") or ($Mode == "save_newpost"))
 {
     require('db_con.php');
     // If saving, get data from form
@@ -294,10 +235,10 @@ if (($Mode == "save") or ($Mode == "save_prevpost") or ($Mode == "save_newpost")
     $frmPrivate = $_POST['cb_private'];
 }
 // ----------------------------------------------------------------------------------------
-// Now save stuff if we need to 
-// If user has previously posted this URL, put both up  
+// Now save stuff if we need to
+// If user has previously posted this URL, put both up
 
-if ($Mode == "save") 
+if ($Mode == "save")
 {
     // First see if this user has posted this URL before
     $queryURL = "SELECT URLID FROM URL WHERE URL = '" . $frmUrl . "'";
@@ -320,7 +261,7 @@ if ($Mode == "save")
         // Now see if this user has
         $rowd = mysql_fetch_array($resultd);
         $myURLID = $rowd['URLID'];
-        $querySiteInfo = "SELECT UserSiteID, SiteDescr, URLID, ExtendedDesc, InRotation, Private FROM UserSite WHERE URLID=" . $myURLID . " AND UserID='". $theusername ."'";    
+        $querySiteInfo = "SELECT UserSiteID, SiteDescr, URLID, ExtendedDesc, InRotation, Private FROM UserSite WHERE URLID=" . $myURLID . " AND UserID='". $theusername ."'";
         $resultg = mysql_query($querySiteInfo) or die (mysql_error()."<br />Couldn't execute query: $querySiteInfo");
         $thenum = mysql_num_rows($resultg);
         if ($thenum == 0)
@@ -331,7 +272,7 @@ if ($Mode == "save")
         else
         {
             // this user has posted this URL before
-           
+
             show_header();
             print "You have posted this URL before.<br>";
             print "Instructions: Make whatever changes you would like in EITHER your previous post or your new post.";
@@ -353,7 +294,7 @@ if ($Mode == "save")
     }
 } // if mode = save
 // ----------------------------------------------------------------------------------------
-if (($Mode == "save_prevpost") or ($Mode == "save_newpost")) 
+if (($Mode == "save_prevpost") or ($Mode == "save_newpost"))
 {
 // Save when we have put up two choices
 
@@ -383,15 +324,15 @@ if (($Mode == "save_prevpost") or ($Mode == "save_newpost"))
         }
     }
 // redirect
-$thelocstring = "Location: http://".$sitename."/bookmarks/bookmarks.php?user=". $nameofuser ."&sortkey=postdate"; 
+$thelocstring = "Location: http://".$sitename."/bookmarks/bookmarks.php?user=". $nameofuser ."&sortkey=postdate";
 header ($thelocstring);
 exit();
 } // if mode = save_prevpost or save_newpost
-// ---------------------------------------------------------------------------------------- 
+// ----------------------------------------------------------------------------------------
 // End of saving stuff
 // ----------------------------------------------------------------------------------------
 
-if ($Mode == "get_title") 
+if ($Mode == "get_title")
 {
     $frmURL = $_POST['url'];
     $Title_Of_Page = ac_Get_Title_From_Page($frmURL, "2048");
@@ -403,7 +344,7 @@ if ($Mode == "get_title")
 ?>
 <?php
 // Just show the form
-if ($Mode == "notsave") 
+if ($Mode == "notsave")
 {
     show_header();
     show_form($UrlToPost, $TitleToPost,"","");
@@ -411,7 +352,7 @@ if ($Mode == "notsave")
 }
 // ----------------------------------------------------------------------------------------
 // This is what happens if the username is not recognized
-} 
+}
 else
 {
     require('bkbottom.php');
@@ -419,4 +360,4 @@ else
 ?>
 <script type="text/javascript" src="js/bookpost.js"></script>
 </body>
-</html> 
+</html>
