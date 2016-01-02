@@ -89,8 +89,8 @@ foreach ($_GET as $k => $v)
             $MySortKey = $v;
             break;
         case 'dir' :
-            $myDirection = $v; 
-            break;   
+            $myDirection = $v;
+            break;
         case 'start':
             $start = intval($v);
             break;
@@ -107,7 +107,7 @@ if ($MySortKey == "") {
 }
 if ($myDirection == "") {
     if ($MySortKey == "name") {
-        $myDirection = "ASC"; 
+        $myDirection = "ASC";
     } else {
         $myDirection = "DESC";
     }
@@ -309,17 +309,9 @@ if ($Tagfilter) {
     </th>
     <?php
     }
-else {
-?>
-    <tr>
-    <th>
-        <a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=name&dir=<?php echo $displayDirection?>" class="bodyt">Name</a>
-    </th>
-    <th class="rttopu">
-        <a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=postdate&dir=<?php echo $displayDirection?>" class="bodyt">Posting Date</a>
-    </th>
-<?php
-}
+
+
+
 if ($userdisp == $theusername)
 {
 ?>
@@ -331,142 +323,32 @@ if ($userdisp == $theusername)
 </tr>
 <?php
 $currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$bookmarks_data = array();
 for ($i=0; $i <$num_results; $i++)
 {
-// Display one bookmark
+// Get the data for one bookmark
+
     $row = mysql_fetch_array($result);
-    $myName = $row['SiteDescr'];
-    $myExtended = $row['ExtendedDesc'];
-    $myInro = $row['InRotation'];
-    $myPriv = $row['Private'];
-    $myOrigDate = $row['PostTime'];
-    $myTime = $row['LVDispl'];
-    $myURLID = $row['URLID'];
-    $myCount = $row['mycol'];
-    // Calculate count of other users
-    $queryPeople = "SELECT COUNT(*) AS PeopleCt FROM UserSite WHERE URLID = " . $myURLID;
-    $resPeople = mysql_query($queryPeople) or die (mysql_error()."<br />Couldn't execute query: $queryPeople");
-    $rPeople = mysql_fetch_array($resPeople);
-    $pCount = $rPeople['PeopleCt'];
-    $othcount = $pCount - 1;
-    print "<tr><td><a href=\"bkmarkredir.php?snum=";
-    print $myURLID;
-    print "\" target=\"new\" class=\"bodyl\">";
-    print stripslashes($myName);
-    print "</a></td>";
-    print "<td class=\"rttop\">";
-    print $myOrigDate;
-    print "</td>";
-    if ($userdisp == $theusername)
-    {
-        print "<td class=\"rttop\" align=\"right\">";
-        print $myTime;
-        print "</td><td class=\"rttop\" align='right'>";
-        print $myCount;
-        print "</td>";
-    }
-    print "</tr>";
-    print "<tr>";
-    // Display Extended Descr
-    If (strlen($myExtended) > 0)
-    {
-        print "<td colspan=\"2\">";
-        print stripslashes($myExtended);
-        print "</td>";
-    }
-    print "</tr>";
-    // If displaying tags for the registered user, display In Rotation and Private
-    if ($userdisp == $theusername)
-    {
-        $donetr = 0;
-        if ($myInro)
-        {
-            print "<tr><td>";
-            $donetr = 1;
-            print "In-Rotation";
-        }
-        if ($myPriv)
-        {
-            if (!$donetr)
-            {
-                print "<tr><td>";
-                $donetr = 1;
-            }
-            else
-            {
-                print "; ";
-            }
-            print "Private";
-        }
-        if ($donetr)
-            print "</td></tr>";
-    }
-    // Beginning of code to display tags for one bookmark
-    $MyQuery2 = "SELECT Tag FROM UserSiteTag WHERE URLID=" . $myURLID . " AND UserID='". $userdisp ."' ORDER BY TagOrder";
-    print "<tr><td class=\"below\">";
+    // Get data for tags
+    $MyQuery2 = "SELECT Tag FROM UserSiteTag WHERE URLID=" . $row['URLID'] . " AND UserID='". $userdisp ."' ORDER BY TagOrder";
+
     $result2 = mysql_query($MyQuery2) or die (mysql_error()."<br />Couldn't execute query: $MyQuery2");
-    $BMTagString = "";
     $num_results2 = mysql_num_rows($result2);
-    for ($j=0; $j <$num_results2; $j++)
-    {
+    $tags = array();
+    for ($j=0; $j <$num_results2; $j++) {
         $row2 = mysql_fetch_array($result2);
-        $myTag = $row2['Tag'];
-        $BMTagString = $BMTagString . "<a href=\"bookmarks.php?user=". $userdisp ."&tags=". $myTag . "\" class=\"bodym\">";
-        $BMTagString = $BMTagString . $myTag . " </a>";
+        $tags[] = $row2['Tag'];
     }
-
-    print $BMTagString;
-    print "...";
-    // End of code to display tags
-    print "&nbsp;";
-    if ($othcount > 0)
-    {
-        print "<a href=\"urlpost.php?url=";
-        print $myURLID;
-        print "\" class=\"bodyt\">";
-        print "and ";
-        print $othcount;
-        print " other ";
-        if ($othcount > 1)
-            print "people";
-        else
-            print "person";
-        print "</a>";
-    }
-    print "</td>";
-
-    // Display edit this item or copy this item
-
-    if ($userdisp == $theusername)
-    {
-        // edit
-        print "<td colspan=\"3\" class=\"rtside\">";
-        print "<a href=\"editpost.php?editsite=";
-        print $myURLID;
-        print "&redirectUrl=";
-        print urlencode($currentURL);
-        print "\" class=\"bodyt\">Edit</a>";
-    }
-    else
-    {
-        // copy
-        // Get actual URL
-        $URLQuery = "Select URL FROM URL Where URLID =" . $myURLID;
-        $URLresult = mysql_query($URLQuery) or die (mysql_error()."<br />Couldn't execute query: $URLQuery");
-        $Urow = mysql_fetch_array($URLresult);
-        $TheURL = $Urow['URL'];
-        print "<td class=\"rtside\"><a href=\"bookpost.php?url=";
-        print $TheURL;
-        print "&title=";
-        print $myName;
-        print "\" class=\"bodyt\">Copy</a>";
-    }
-    print " this item</td></tr>";
+    $one_bookmark_data = array('bookmark' => $row, 'tags' => $tags);
+    $bookmarks_data[] = $one_bookmark_data;
+    // Done getting data for tags
 
 } // end of for $i
 ?>
 </table>
 <?php
+require "templates/bookmarks.php";
+
 display_pnt();
 ?>
 </div>
