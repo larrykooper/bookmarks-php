@@ -1,16 +1,26 @@
 Sort by:
+<?
+if ($Tagfilter) {
+    $queryStringTags = "&tags=$wantedTagString";
+
+} else {
+    $queryStringTags = "";
+}
+
+?>
+
 <table border="0">
     <tr>
         <th>
-            <a href="bookmarks.php?user=<?= $userdisp?>&amp;sortkey=name&amp;dir=<?= $displayDirection?>" class="bodyt">Name</a>
+            <a href="bookmarks.php?user=<?= $userdisp?>&amp;sortkey=name&amp;dir=<?= $displayDirection?><?=$queryStringTags ?>" class="bodyt">Name</a>
         </th>
         <th class="rttopu">
-            <a href="bookmarks.php?user=<?= $userdisp?>&amp;sortkey=postdate&amp;dir=<?= $displayDirection?>" class="bodyt">Posting Date</a>
+            <a href="bookmarks.php?user=<?= $userdisp?>&amp;sortkey=postdate&amp;dir=<?= $displayDirection?><?=$queryStringTags ?>" class="bodyt">Posting Date</a>
         </th>
         <th class="rttopu">
-            <a href="bookmarks.php?sortkey=lastvisit&amp;dir=<?= $displayDirection?>" class="bodyt">Last Visited</a></th>
+            <a href="bookmarks.php?sortkey=lastvisit&amp;dir=<?= $displayDirection?><?=$queryStringTags ?>" class="bodyt">Last Visited</a></th>
         <th class="rttopu">
-            <a href="bookmarks.php?sortkey=count&amp;dir=<?= $displayDirection?>" class="bodyt">Total Visits</a>
+            <a href="bookmarks.php?sortkey=count&amp;dir=<?= $displayDirection?><?=$queryStringTags ?>" class="bodyt">Total Visits</a>
         </th>
 
     </tr>

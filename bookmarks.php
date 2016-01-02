@@ -181,17 +181,11 @@ $num_result9 = mysql_num_rows($result9);
 for ($i=0; $i <$num_result9; $i++)
 {
     $row9 = mysql_fetch_array($result9);
-    $TheCount = $row9['tcount'];
-    $TheTag = $row9['Tag'];
-    print "<div class=LBBTag><span class=\"LBBNum\">";
-    print $TheCount;
-    print "</span><a href=\"bookmarks.php?tags=";
-    print $TheTag;
-    print "&user=".$userdisp;
-    print "\" class=\"right\">";
-    print $TheTag;
-    print "</a></div>";
+    $tags_data[] = $row9;
+
+
 }
+require "templates/allTags.php";
 // Display tag-sorting options
 
 print "<div class='LBBRightTitle'>sort by ";
@@ -295,33 +289,7 @@ if ($myDirection == "ASC") {
     $displayDirection = "ASC";
 }
 display_pnt();
-?>
-Sort by:
-<table border="0">
-<?php
-if ($Tagfilter) {
-?>
-    <tr>
-        <th><a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=name&dir=<?php echo $displayDirection?>&tags=<?php echo $wantedTagString?>" class="bodyt">Name</a>
-    </th>
-    <th class="rttopu">
-        <a href="bookmarks.php?user=<?php echo $userdisp?>&sortkey=postdate&dir=<?php echo $displayDirection?>&tags=<?php echo $wantedTagString?>" class="bodyt">Posting Date</a>
-    </th>
-    <?php
-    }
 
-
-
-if ($userdisp == $theusername)
-{
-?>
-<th class="rttopu"><a href="bookmarks.php?sortkey=lastvisit&dir=<?php echo $displayDirection?>" class="bodyt">Last Visited</a></th>
-<th class="rttopu"><a href="bookmarks.php?sortkey=count&dir=<?php echo $displayDirection?>" class="bodyt">Total Visits</a></th>
-<?php
-}
-?>
-</tr>
-<?php
 $currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $bookmarks_data = array();
 for ($i=0; $i <$num_results; $i++)
@@ -345,7 +313,7 @@ for ($i=0; $i <$num_results; $i++)
 
 } // end of for $i
 ?>
-</table>
+
 <?php
 require "templates/bookmarks.php";
 
