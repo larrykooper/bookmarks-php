@@ -1,11 +1,11 @@
-<?php 
+<?php
 session_start();
 ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Bookmarks Log-Out</title>
-<link rel="stylesheet" type="text/css" href="bkm.css">
+<link rel="stylesheet" type="text/css" href="css/bkm.css">
 </head>
 <body>
 <?php
@@ -21,9 +21,9 @@ if (!empty($old_user))
 {
 	if ($result_dest)
 	{
-		// if they were logged in and are now logged out 
+		// if they were logged in and are now logged out
 		echo '<p>Logged out.<br /><br />';
-		print "Would you like to <a href=\"userlogin.php\" class=\"body\">Log in</a> again?</p>";		
+		print "Would you like to <a href=\"userlogin.php\" class=\"body\">Log in</a> again?</p>";
 	}
 	else
 	{
@@ -31,12 +31,12 @@ if (!empty($old_user))
 		echo 'Could not log you out.<br />';
 	}
 }
-else 
+else
 {
-	// they weren't logged in but came to this page somehow 
+	// they weren't logged in but came to this page somehow
 	echo 'You were not logged in, and so have not been logged out.';
-	print "<a href=\"userlogin.php\" class=\"body\"> Log in</a> now to view your bookmarks.";		
-	
+	print "<a href=\"userlogin.php\" class=\"body\"> Log in</a> now to view your bookmarks.";
+
 }
 ?>
 </body>

@@ -58,7 +58,7 @@ else
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LarryBeth Forgotten Password Page</title>
-<link rel="stylesheet" type="text/css" href="bkm.css">
+<link rel="stylesheet" type="text/css" href="css/bkm.css">
 </head>
 <body>
 <?php

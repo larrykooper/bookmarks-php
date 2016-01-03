@@ -1,6 +1,6 @@
 body {
 	background-color: #ffffff;
-	background-image: url(images/bgrt.jpg); 
+	background-image: url(../images/bgrt.jpg);
 	background-repeat: repeat-y;
 	background-position: right;
 	color: #000000;
@@ -42,7 +42,7 @@ font-weight: bold;
 }
 DIV.LBBLeft {
 	margin-bottom: 1pc;
-	margin-left: 0.5em; 
+	margin-left: 0.5em;
 	padding-left: 1em;
 	padding-right: 0.5em;
 	font-size: 80%;
@@ -52,7 +52,7 @@ DIV.LBBRight {
 	width: 200px;
 	height: 100%;
 	margin-left: 0.5em;
-	padding-top: 40px; 
+	padding-top: 40px;
 	padding-left: 1em;
 	padding-right: 10px;
 	padding-bottom: 10px;
@@ -63,14 +63,14 @@ DIV.LBBRight {
 DIV.LBBRightTitle {
 	font-weight: bolder;
 	font-size: 120%;
-	margin-left: 0.0em; 
+	margin-left: 0.0em;
 }
 
 
-DIV.LBBPostInfo { 
+DIV.LBBPostInfo {
 	font-weight: bolder;
 	font-size: 120%;
-	margin-left: 0.0em; 
+	margin-left: 0.0em;
 }
 
 DIV.LBBBanner {
@@ -79,7 +79,7 @@ DIV.LBBBanner {
 	border-bottom: 4px solid #fab057;
 	padding-bottom: 2px;
 	background-color: #f37108;
-	background-image: url(images/bookmarklogo.jpg);
+	background-image: url(../images/bookmarklogo.jpg);
 	background-repeat: no-repeat;
 	clear: both;
 }
@@ -113,7 +113,7 @@ DIV.LBBPost {
 	margin-bottom: 0.25pc;
 	font-size: 100%;
 	padding-top: 0.5ex;
-	padding-left: 0.5em; 
+	padding-left: 0.5em;
 }
 
 DIV.post { line-break: emergency; margin-bottom: 0.25pc; font-size: 100%; padding-top: 0.5ex; }
@@ -132,33 +132,33 @@ DIV.LBBPostExtended {
 DIV.LBBMain {
 	margin-left: 10px;
 	margin-right: 5px;
-	padding-bottom: 0.5pc; padding-left: 0.5em; padding-top: 0.5ex; 
+	padding-bottom: 0.5pc; padding-left: 0.5em; padding-top: 0.5ex;
 }
 DIV.narrow {
 	margin-left: 10px;
 	margin-right: 250px;
-	padding-bottom: 0.5pc; 
-	padding-left: 0.5em; 
-	padding-top: 0.5ex; 
+	padding-bottom: 0.5pc;
+	padding-left: 0.5em;
+	padding-top: 0.5ex;
 }
 
 DIV.LBBPage {
-	padding-bottom: 0.5pc; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.5ex; 
+	padding-bottom: 0.5pc; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.5ex;
 	background-color: #eeeeee;
 }
 .LBBInfo { padding-left: 0.5em;margin-bottom: 0.25pc; font-size: 100%; padding-top: 0.5pc; }
 
 SPAN.LBBNote { font-size: 80%; }
-SPAN.LBBNum { 
-	float: left; 
-	width: 20px; 
-	color: #ffffff; 
+SPAN.LBBNum {
+	float: left;
+	width: 20px;
+	color: #ffffff;
 	text-align: right;
 	}
-div.LBBTag { 
+div.LBBTag {
 	padding-right: 4px;
 }
-a { 
+a {
 	text-decoration: none;
 	background-repeat: no-repeat;
 	background-position: left center;
@@ -166,67 +166,67 @@ a {
 a.header:link {
 	color: #ffffff;
 	text-decoration: none;
-	background-image: url(images/dot.jpg);
+	background-image: url(../images/dot.jpg);
 	padding-left: 10px;
 }
-a.header:active { 
+a.header:active {
 	color: #ffffff;
 	text-decoration: none;
-	background-image: url(images/dot.jpg);
+	background-image: url(../images/dot.jpg);
 	padding-left: 10px;
 }
-a.header:visited { 
+a.header:visited {
 	color: #ffffff;
 	text-decoration: none;
-	background-image: url(images/dot.jpg);
+	background-image: url(../images/dot.jpg);
 	padding-left: 10px;
 }
-a.header:hover { 
+a.header:hover {
 	text-decoration: none;
 	color: #fab057;
-	background-image: url(images/dot.jpg);
-	padding-left: 10px; 
+	background-image: url(../images/dot.jpg);
+	padding-left: 10px;
 }
 a.bodyl:link {
 	color: #4a6043;
 	text-decoration: none;
-	background: url(images/dot.jpg) no-repeat left 6px;
+	background: url(../images/dot.jpg) no-repeat left 6px;
 	padding-left: 10px;
 }
-a.bodyl:active { 
+a.bodyl:active {
 	color: #c65c06;
 	text-decoration: none;
-	background: url(images/dot.jpg) no-repeat left 6px;
+	background: url(../images/dot.jpg) no-repeat left 6px;
 	padding-left: 10px;
 }
-a.bodyl:visited { 
+a.bodyl:visited {
 	color: #c65c06;
 	text-decoration: none;
-	background: url(images/dot.jpg) no-repeat left 6px;
+	background: url(../images/dot.jpg) no-repeat left 6px;
 	padding-left: 10px;
 }
-a.bodyl:hover { 
+a.bodyl:hover {
 	text-decoration: none;
 	color: #fab057;
-	background: url(images/dot.jpg) no-repeat left 6px;
-	padding-left: 10px; 
+	background: url(../images/dot.jpg) no-repeat left 6px;
+	padding-left: 10px;
 }
 a.rt:link {
 	color: #4a6043;
 	text-decoration: none;
 	padding-right: 3px;
 }
-a.rt:active { 
+a.rt:active {
 	color: #c65c06;
 	text-decoration: none;
 	padding-right: 3px;
 }
-a.rt:visited { 
+a.rt:visited {
 	color: #c65c06;
 	text-decoration: none;
 	padding-right: 3px;
 }
-a.rt:hover { 
+a.rt:hover {
 	text-decoration: none;
 	color: #fab057;
 	padding-right: 3px;
@@ -236,59 +236,59 @@ a.right:link {
 	text-decoration: none;
 	padding-left: 10px;
 }
-a.right:active { 
+a.right:active {
 	color: #ffffff;
 	text-decoration: none;
 	padding-left: 10px;
 }
-a.right:visited { 
+a.right:visited {
 	color: #ffffff;
 	text-decoration: none;
 	padding-left: 10px;
 }
-a.right:hover { 
+a.right:hover {
 	text-decoration: none;
 	color: #fab057;
 	padding-left: 10px;
 }
-a.body:link { 
+a.body:link {
 	color: #df6807;
  	font-weight: bold;
 }
-a.body:active { 
+a.body:active {
 	color: #df6807;
 	font-weight: bold;
 }
-a.body:visited { 
+a.body:visited {
 	color: #df6807;
 	font-weight: bold;
 }
-a.body:hover { 
+a.body:hover {
 	color: #fab057;
 	font-weight: bold;
 }
-a.bodyt:link { 
+a.bodyt:link {
 	color: #df6807;
  }
-a.bodyt:active { 
+a.bodyt:active {
 	color: #df6807;
 }
-a.bodyt:visited { 
+a.bodyt:visited {
 	color: #df6807;
 }
-a.bodyt:hover { 
+a.bodyt:hover {
 	color: #fab057;
 }
-a.bodym:link { 
+a.bodym:link {
 	color: #8d7108;
 }
-a.bodym:active { 
+a.bodym:active {
 	color: #8d7108;
 }
-a.bodym:visited { 
+a.bodym:visited {
 	color: #8d7108;
 }
-a.bodym:hover { 
+a.bodym:hover {
 	color: #fab057;
 }
 th {
@@ -330,7 +330,7 @@ th {
 }
 
 li {
-	list-style-image: url(images/greendot.jpg);
+	list-style-image: url(../images/greendot.jpg);
 	padding-bottom: 5px;
 }
 .help	{
@@ -338,7 +338,7 @@ li {
 	color: #617d24;
 	font-weight: bold;
 	padding-bottom: 2px;
-	background-image: url(images/greendot.jpg);
+	background-image: url(../images/greendot.jpg);
 	background-repeat: no-repeat;
 	background-position: left center;
 	padding-left: 10px;

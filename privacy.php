@@ -5,18 +5,18 @@ require('ckuser.php');
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="bkm.css">
+<link rel="stylesheet" type="text/css" href="css/bkm.css">
 <title>LarryBeth Bookmarks Privacy Policy</title>
 </head>
 <body>
 
-			
+
 <?php
-If ($validated)  
+If ($validated)
 {
 include('headerlogged.inc');
 }
-else 
+else
 {
 include('header.inc');
 
@@ -24,29 +24,29 @@ include('header.inc');
 ?>
 <div class="LBBRight"><div class='LBBRightTitle'></div></div>
 <div class="LBBMain">
-		
-	<?php	
-If ($validated) 
+
+	<?php
+If ($validated)
 {
-	echo '<p class="hello">Welcome, '.$theusername.' </p>';		
+	echo '<p class="hello">Welcome, '.$theusername.' </p>';
 }
 ?>
-		
+
 
 <p class="help">Bookmarks LarryBeth Style Privacy Policy</p>
 <ul>
-<li>Bookmarks, LarryBeth Style, does not rent, sell, or share personal information about you with other people or companies.</li>  
+<li>Bookmarks, LarryBeth Style, does not rent, sell, or share personal information about you with other people or companies.</li>
 
-<li>You can browse the site without telling us who you are or revealing any personal information about yourself.</li> 
+<li>You can browse the site without telling us who you are or revealing any personal information about yourself.</li>
 
 </ul>
 
 <p class="help">Information We Collect</p>
 <ul>
-<li>When you register on  Bookmarks LarryBeth Style, we ask you for your 
-name and your email address.</li> 
+<li>When you register on  Bookmarks LarryBeth Style, we ask you for your
+name and your email address.</li>
 
-<li>Bookmarks LarryBeth Style allows you to save a list of your favorite web sites.</li> 
+<li>Bookmarks LarryBeth Style allows you to save a list of your favorite web sites.</li>
 <li>When you visit bookmark links that you have set up on Bookmarks LarryBeth Style, Bookmarks LarryBeth Style records the site you have visited and the time you visited.   We do this so that you can keep track of which sites you visit and when you visit them.</li>
 <li>Bookmarks LarryBeth Style uses information we collect to improve our services, and to email you your password at your request.</li>
 
@@ -56,7 +56,7 @@ name and your email address.</li>
 
 <p class="help">Cookies</p>
 
-<ul>	
+<ul>
 <li>Bookmarks LarryBeth Style may set and access cookies on your computer.  We do this to allow you to visit the site without logging in each time you visit.</li>
 
 </ul>

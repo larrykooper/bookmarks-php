@@ -21,20 +21,20 @@ if ($MySortKey == "")
 switch ($MySortKey)
 	{
 		case 'name':
-			$MyQueryPart4 = " ORDER BY SiteDescr"; 
+			$MyQueryPart4 = " ORDER BY SiteDescr";
 			break;
 		case 'postdate':
 			$MyQueryPart4 = " ORDER BY OrigPostingTime DESC";
 			break;
 		default:
-			$MyQueryPart4 = " ORDER BY OrigPostingTime DESC"; 
+			$MyQueryPart4 = " ORDER BY OrigPostingTime DESC";
 			break;
-	}	
-	
+	}
+
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Bookmarks Shared</title>
-<link rel="stylesheet" type="text/css" href="bkm.css">
+<link rel="stylesheet" type="text/css" href="css/bkm.css">
 </head>
 <body>
 <?php
@@ -45,7 +45,7 @@ include('headerlogged.inc');
 ?>
 
 <div class="LBBRight">
-<div class="LBBRightTitle">Common tags</div>	
+<div class="LBBRightTitle">Common tags</div>
 
 <?php
 $queryCommonTags = "SELECT Tag, COUNT(*) AS Myct FROM UserSiteTag WHERE URLID =". $myURLID . " GROUP BY Tag HAVING Myct > 1  ORDER BY Myct DESC ";
@@ -60,9 +60,9 @@ for ($i=0; $i <$num_CT; $i++)
 	print $TheCount;
 	print "</span><a href=\"tag.php?tags=";
 	print $TheTag;
-	print "\" class=\"right\">";	
+	print "\" class=\"right\">";
 	print $TheTag;
-	print "</a></div>";	
+	print "</a></div>";
 }
 print "</div>";
 // End of displaying common tags
@@ -80,52 +80,52 @@ Sort by:
 <th class="rttopu"><a href="urlpost.php?url=<?php echo $myURLID; ?>&sortkey=postdate" class="bodyt">Posting Date</a></th></tr>
 
 <?php
-$MyQuery = "SELECT UserID, SiteDescr, ExtendedDesc, Private, DATE_FORMAT( OrigPostingTime, '%Y-%m-%d %H:%i' ) AS PostTime FROM UserSite WHERE URLID = " . $myURLID . $MyQueryPart4; 
+$MyQuery = "SELECT UserID, SiteDescr, ExtendedDesc, Private, DATE_FORMAT( OrigPostingTime, '%Y-%m-%d %H:%i' ) AS PostTime FROM UserSite WHERE URLID = " . $myURLID . $MyQueryPart4;
 //print $MyQuery; // debug
 
 $result = mysql_query($MyQuery) or die (mysql_error()."<br />Couldn't execute query: $MyQuery");
 $num_results = mysql_num_rows($result);
 //print $num_results;
-for ($i=0; $i <$num_results; $i++) 
+for ($i=0; $i <$num_results; $i++)
 {
 // Display one bookmark
 	$row = mysql_fetch_array($result);
 	$myUserID = $row['UserID'];
-	$myName = $row['SiteDescr'];	
+	$myName = $row['SiteDescr'];
 	$myExtended = $row['ExtendedDesc'];
-	$myOrigDate = $row['PostTime'];	
+	$myOrigDate = $row['PostTime'];
 	$myPrivate = $row['Private'];
-	if ((!$myPrivate) or ($myUserID == $theusername)) 
+	if ((!$myPrivate) or ($myUserID == $theusername))
 	{
-	
-		print "<tr><td>";		
+
+		print "<tr><td>";
 		print "<a class=\"bodyl\" target=\"_blank\" href=\"bkmarkredir.php?snum=";
-		print $myURLID;		
+		print $myURLID;
 		print "\">";
 		print $myName;
-		print "</a></td><td class=\"rttop\">";	
+		print "</a></td><td class=\"rttop\">";
 		print $myOrigDate;
 		print "</td></tr>";
-		// Display Extended 
-		If (strlen($myExtended) > 0)  
-		{		
+		// Display Extended
+		If (strlen($myExtended) > 0)
+		{
 			print "<tr><td colspan=\"2\">";
 			print $myExtended;
 			print "</td></tr>";
-		}		
+		}
 	// If displaying a bookmark for the registered user, display Private if it is private
 	if ($myUserID == $theusername)
-	{		
+	{
 		if ($myPrivate)
-		{			
-			print "<tr><td>";			
-			print "Private";		
-			print "</td></tr>";	
-		}	
+		{
+			print "<tr><td>";
+			print "Private";
+			print "</td></tr>";
+		}
 	}
-	
-		// Beginning of code to display tags for one bookmark	
-		$MyQuery2 = "SELECT Tag FROM UserSiteTag WHERE URLID=" . $myURLID . " AND UserID='". $myUserID ."' ORDER BY TagOrder"; 
+
+		// Beginning of code to display tags for one bookmark
+		$MyQuery2 = "SELECT Tag FROM UserSiteTag WHERE URLID=" . $myURLID . " AND UserID='". $myUserID ."' ORDER BY TagOrder";
 		$result2 = mysql_query($MyQuery2) or die (mysql_error()."<br />Couldn't execute query: $MyQuery2");
 		$BMTagString = "";
 		$num_results2 = mysql_num_rows($result2);
@@ -133,13 +133,13 @@ for ($i=0; $i <$num_results; $i++)
 		{
 			$row2 = mysql_fetch_array($result2);
 			$myTag = $row2['Tag'];
-			$BMTagString = $BMTagString . "<a class=\"bodym\" href=\"bookmarks.php?tags=". $myTag . "\">";				
-			$BMTagString = $BMTagString . $myTag . " </a>";				
-		}	
+			$BMTagString = $BMTagString . "<a class=\"bodym\" href=\"bookmarks.php?tags=". $myTag . "\">";
+			$BMTagString = $BMTagString . $myTag . " </a>";
+		}
 		print "<tr><td class=\"below\">";
-		print $BMTagString;	 	
-		// end of code to display tags 
-		print "&nbsp;";	
+		print $BMTagString;
+		// end of code to display tags
+		print "&nbsp;";
 		print "by ";
 		print "<a class=\"bodyt\" href=\"bookmarks.php?user=";
 		print $myUserID;
@@ -147,21 +147,21 @@ for ($i=0; $i <$num_results; $i++)
 		print $myUserID;
 		print "</a></td>";
 		if ($myUserID == $theusername)
-	
+
 		{
 			// edit
-			print "<td class=\"rtside\"><a href=\"bookmarks.php?editsite=";	
+			print "<td class=\"rtside\"><a href=\"bookmarks.php?editsite=";
 			print $myURLID;
 			print "\" class=\"bodyt\">Edit </a>";
 		}
-		else 
+		else
 		{
 		//copy
-		// Get actual URL		
-			$URLQuery = "Select URL FROM URL Where URLID =" . $myURLID; 
+		// Get actual URL
+			$URLQuery = "Select URL FROM URL Where URLID =" . $myURLID;
 			$URLresult = mysql_query($URLQuery) or die (mysql_error()."<br />Couldn't execute query: $URLQuery");
 			$Urow = mysql_fetch_array($URLresult);
-			$TheURL = $Urow['URL'];		
+			$TheURL = $Urow['URL'];
 			print "<td class=\"rtside\"><a href=\"bookpost.php?url=";
 			print $TheURL;
 			print "&title=";
@@ -170,12 +170,12 @@ for ($i=0; $i <$num_results; $i++)
 		}
 		print "this item</td></tr>";
 	} // suppress private
-	
+
 } // for $i
 print "</table>";
 print "</div>";
 // This is what happens if the username is not recognized.
-} 
+}
 else
 {
 	require('bkbottom.php');

@@ -1,10 +1,10 @@
 <?php
 session_start();
 require('ckuser.php');
-if ($validated) 
+if ($validated)
 {
-// global variables 
-  
+// global variables
+
 $frmFullname = "";
 $frmOldPassword = "";
 $frmNewPassword = "";
@@ -12,27 +12,27 @@ $frmNewPassword2 = "";
 $frmEmail = "";
 // ----------------------------------------------------------------------------------------
 function show_form($errors = '')
-{ 
+{
 	global $theusername, $frmFullname, $frmOldPassword, $frmNewPassword, $frmNewPassword2, $frmEmail;
 ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Bookmarks Edit My Profile</title>
-<link rel="stylesheet" type="text/css" href="bkm.css">
+<link rel="stylesheet" type="text/css" href="css/bkm.css">
 </head>
 
 <body>
 <?php
 include('headerlogged.inc');
-?>	
+?>
 <div class='LBBRight'></div>
 <div class="LBBMain">
 <?php
 echo '<p class="help"> Welcome, '.$theusername.'.  ';
 ?>
 <?php
-	
+
 	if ($errors)
 	{
         print 'You need to correct the following errors: <ul><li>';
@@ -66,16 +66,16 @@ echo '<p class="help"> Welcome, '.$theusername.'.  ';
 <input type="hidden" name="passform_submitted" value="1">
 </form>
 </fieldset>
-	
+
 <?php
 }// end function show_form
 // ----------------------------------------------------------------------------------------
 function validate_nameform()
 {
 	global  $frmFullname, $frmEmail;
-    $errors = array();	
-	
-	$frmFullname = $_POST['user_fullname'];	
+    $errors = array();
+
+	$frmFullname = $_POST['user_fullname'];
 	$frmEmail = $_POST['email'];
 
     return $errors;
@@ -84,16 +84,16 @@ function validate_nameform()
 function validate_passform()
 {
 	global   $frmOldPassword, $frmNewPassword, $frmNewPassword2, $theusername;
-    $errors = array();		
-	
+    $errors = array();
+
 	$frmOldPassword = $_POST['oldpassword'];
 	$frmNewPassword = $_POST['newpassword'];
-	$frmNewPassword2 = $_POST['newpassword2'];	
-	
+	$frmNewPassword2 = $_POST['newpassword2'];
+
 	if (strlen($frmOldPassword) == 0)
-		$errors[] = 'Old password is required.';	
+		$errors[] = 'Old password is required.';
 	if (strlen($frmNewPassword) == 0)
-		$errors[] = 'Password is required.';				
+		$errors[] = 'Password is required.';
 	if (strlen($frmNewPassword) > 10)
 		$errors[] = 'Password cannot be longer than 10 characters.';
 	if (strlen($frmNewPassword) < 6)
@@ -101,12 +101,12 @@ function validate_passform()
 	if (!ereg('^[a-zA-Z0-9]+$', $frmNewPassword))
 		$errors[] = 'Password may only contain letters and numbers.';
 	if ($frmNewPassword <> $frmNewPassword2)
-		$errors[] = 'Password confirmation does not match password.';	
-	require_once('db_con.php');				
-	$UNquery = "SELECT UserID FROM User WHERE UserID='$theusername' and Password=PASSWORD('$frmOldPassword')";		
+		$errors[] = 'Password confirmation does not match password.';
+	require_once('db_con.php');
+	$UNquery = "SELECT UserID FROM User WHERE UserID='$theusername' and Password=PASSWORD('$frmOldPassword')";
 	$UNresult = mysql_query($UNquery) or die (mysql_error()."<br />Couldn't execute query: $UNquery");
 	if (mysql_num_rows($UNresult) == 0 )
-		$errors[] = 'Old password is incorrect.';				
+		$errors[] = 'Old password is incorrect.';
 
     return $errors;
 } // end function validate_passform
@@ -120,58 +120,58 @@ function disp_pageheader()
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Bookmarks Edit My Profile</title>
-<link rel="stylesheet" type="text/css" href="bkm.css">
+<link rel="stylesheet" type="text/css" href="css/bkm.css">
 </head>
 <body>
 <?php
 include('headerlogged.inc');
-?>	
+?>
 <div class="LBBRight">
 <div class="LBBRightTitle"></div>
 </div>
 <div class="LBBMain">
 <?php
 echo '<p class="help">Welcome, '.$theusername.'. ';
-print '</p>';		
+print '</p>';
 }
 // end function disp_pageheader
 
 // ---------------------------------------------------------------------------------------
-function process_nameform() 
+function process_nameform()
 {
 	global  $theusername, $frmFullname, $frmEmail;
-	require_once('db_con.php');	
-	
-	// Update the database 
-	
+	require_once('db_con.php');
+
+	// Update the database
+
 	$myUpStmt = "UPDATE User SET EmailAddress = '$frmEmail', FullName = '$frmFullname' WHERE UserID = '$theusername'";
-	$result5 = mysql_query($myUpStmt) or die (mysql_error()."<br />Couldn't execute query: &myUpStmt");	
+	$result5 = mysql_query($myUpStmt) or die (mysql_error()."<br />Couldn't execute query: &myUpStmt");
 	disp_pageheader();
-	print "Your information has been updated. <br>";	
+	print "Your information has been updated. <br>";
 }
 // end function process_nameform
 // -----------------------------------------------------------------------------------------
-function process_passform() 
+function process_passform()
 {
 	global  $theusername, $frmOldPassword , $frmNewPassword, $frmNewPassword2;
-	require_once('db_con.php');		
-	//  Update the database   	 
+	require_once('db_con.php');
+	//  Update the database
 	$myUpStmt = "UPDATE User SET Password = PASSWORD('$frmNewPassword') WHERE UserID = '$theusername'";
-	$result5 = mysql_query($myUpStmt) or die (mysql_error()."<br />Couldn't execute query: &myUpStmt");	
-	
-	// Set persistent cookie 	
-	
+	$result5 = mysql_query($myUpStmt) or die (mysql_error()."<br />Couldn't execute query: &myUpStmt");
+
+	// Set persistent cookie
+
 	setcookie('pp', $frmNewPassword, time()+60*60*24*730);  /* expire in 2 years */
 	disp_pageheader();
-	print "Your password has been updated.<br>";	
+	print "Your password has been updated.<br>";
 }
 // end function process_passform
 
 // -----------------------------------------------------------------------------------------
 ?>
 <?php
-if ($_POST['nameform_submitted']) 
-{    
+if ($_POST['nameform_submitted'])
+{
 	$form_errors = validate_nameform();
     if ($form_errors)
 	{
@@ -182,10 +182,10 @@ if ($_POST['nameform_submitted'])
         // The submitted data is valid, so process it
         process_nameform();
     }
-} 
+}
 elseif ($_POST['passform_submitted'])
 	{
-	
+
 		$form_errors = validate_passform();
 	    if ($form_errors)
 		{
@@ -195,22 +195,22 @@ elseif ($_POST['passform_submitted'])
 		{
 	        // The submitted data is valid, so process it
 	        process_passform();
-	    }	
-		
+	    }
+
 	}
-else	
+else
 	{
-		
+
 	    // The form wasn't submitted, so display
-		// Read from the database 
-		require_once( 'db_con.php' );	
+		// Read from the database
+		require_once( 'db_con.php' );
 		$UserQuery = "SELECT EmailAddress, FullName FROM User WHERE UserID='$theusername'";
-		$UserResult = mysql_query($UserQuery) or die (mysql_error()."<br />Couldn't execute query: $UserQuery"); 
+		$UserResult = mysql_query($UserQuery) or die (mysql_error()."<br />Couldn't execute query: $UserQuery");
 		$row = mysql_fetch_array($UserResult);
 		$frmEmail = $row['EmailAddress'];
-		$frmFullname = $row['FullName']; 
+		$frmFullname = $row['FullName'];
 		// Display the form
-		
+
 	    show_form("");
 	}
 ?>
@@ -220,7 +220,7 @@ else
 <?php
 // ----------------------------------------------------------------------------------------
 // This is what happens if the username is not recognized
-} 
+}
 else
 {
 	require('bkbottom.php');

@@ -147,7 +147,7 @@ require_once( 'db_con.php' );
 $myTitle = "Bookmarks LarryBeth Style";
 ?>
 <title><?php echo $myTitle?></title>
-<link rel="stylesheet" type="text/css" href="bkm.css">
+<link rel="stylesheet" type="text/css" href="css/bkm.css">
 </head>
 <body>
 <?php
