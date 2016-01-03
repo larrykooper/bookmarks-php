@@ -1,0 +1,23 @@
+label.firstCol {
+    display: block;
+}
+
+input {
+    height: 23px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+label > span {
+    float: left;
+    width: 100px;
+}
+
+.explanation, .checkboxes {
+    display: block;
+    margin-left: 100px;
+}
+
+.private {
+    display: block;
+}

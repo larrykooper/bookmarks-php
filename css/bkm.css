@@ -33,9 +33,11 @@ width: 50%;
 fieldset.main {
 width: 800px;
 }
+
 fieldset.chg {
-width: 75%;
+    width: 904px;
 }
+
 legend{
 color: #617d24;
 font-weight: bold;
