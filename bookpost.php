@@ -3,8 +3,7 @@ session_start();
 require('ckuser.php');
 require('const1.php');
 //---------------------------------------------------------------------------------------
-function TagString ($theResult)
-{
+function TagString ($theResult) {
 
     $TString = "";
     $num_results = mysql_num_rows($theResult);
@@ -28,31 +27,6 @@ function ac_Get_Title_From_Page($file, $bytes)
         $Get_Title_From_Page = $_Get_Title_From_Page[1][0];
         return $Get_Title_From_Page;
     }
-
-//---------------------------------------------------------------------------------------
-function show_header ()
-{
-global $theusername;
-$myheader = <<< End_Of_Header
-    <html>
-    <head>
-    <title>Bookmark Post Page</title>
-    <link rel="stylesheet" type="text/css" href="css/bkm.css">
-    <link rel="stylesheet" type="text/css" href="css/postSiteForm.css">
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    </head>
-    <body>
-End_Of_Header;
-    print $myheader;
-    include('headerlogged.inc');
-    ?>
-
-    <div class="LBBMain">
-<?php
-echo '<p class="help"> Welcome, '.$theusername.'.  ';
-print '</p>';
-}
 
 //---------------------------------------------------------------------------------------
 function show_form ($urlstring, $descstring, $extenstring, $tagstring) {
@@ -171,9 +145,7 @@ $thelocstring = "Location: http://".$sitename."/bookmarks/bookmarks.php?user=". 
 header ($thelocstring);
 exit();
 }
-//---------------------------------------------------------------------------------------
-?>
-<?php
+
 // ----------------------------------------------------------------------------------------
 // ENTRY POINT
 // ----------------------------------------------------------------------------------------
@@ -275,7 +247,7 @@ if ($Mode == "save")
         {
             // this user has posted this URL before
 
-            show_header();
+            require ("templates/bookPostHeader.php");
             print "You have posted this URL before.<br>";
             print "Instructions: Make whatever changes you would like in EITHER your previous post or your new post.";
             print "Then click either Save Previous or Save New.";
@@ -309,7 +281,7 @@ if (($Mode == "save_prevpost") or ($Mode == "save_newpost"))
         $myUpStmt = "UPDATE UserSite SET SiteDescr = '$frmDescr', ExtendedDesc = '$frmExtended', InRotation = '$dbInro', Private = '$dbPriv', OrigPostingTime = NOW() WHERE UserID = '$theusername' AND URLID = $frmSiteURLID";
     }
     $result5 = mysql_query($myUpStmt) or die (mysql_error()."<br />Couldn't execute query: $myUpStmt");
-    //print "data has been updated";
+
     if ($frmTagString <> $OldTags)
     {
         $myDelStmt = "DELETE FROM UserSiteTag WHERE URLID =" . $frmSiteURLID . " AND UserID='". $theusername ."'";
@@ -343,12 +315,11 @@ if ($Mode == "get_title")
     $Mode = "notsave";
 }
 // end of mode = get_title
-?>
-<?php
+
 // Just show the form
 if ($Mode == "notsave")
 {
-    show_header();
+    require ("templates/bookPostHeader.php");
     show_form($UrlToPost, $TitleToPost,"","");
     print "</div>";
 }
