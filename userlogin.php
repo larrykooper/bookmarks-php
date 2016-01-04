@@ -37,7 +37,7 @@ if (isset ($_POST['userid']) && isset($_POST['password']))
 </head>
 <body>
 <?php
-include('header.inc');
+include('templates/header.php');
 ?>
 <div class='LBBRight'></div>
 <div class="LBBMain">

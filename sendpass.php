@@ -62,7 +62,7 @@ else
 </head>
 <body>
 <?php
-include('header.inc');
+include('templates/header.php');
 ?>
 <div class='LBBRight'></div>
 <div class="LBBMain">

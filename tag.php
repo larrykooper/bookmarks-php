@@ -69,7 +69,7 @@ include('headerlogged.inc');
 }
 else
 {
-include('header.inc');
+include('templates/header.php');
 }
 ?>
 <div class='LBBRight'>

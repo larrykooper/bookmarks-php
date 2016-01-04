@@ -21,7 +21,7 @@ include('headerlogged.inc');
 }
 else
 {
-include('header.inc');
+include('templates/header.php');
 }
 // Display tags that are most active recently
 ?>
