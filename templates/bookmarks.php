@@ -3,8 +3,7 @@
     <title><?php echo $myTitle?></title>
     <link rel="stylesheet" type="text/css" href="css/bkm.css">
 </head>
-<body>
-
+<body class="bookmarksPage">
 
 <div class="LBBMain">
 

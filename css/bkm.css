@@ -331,7 +331,7 @@ th {
 	border-bottom: 1px solid #94b057;
 }
 
-li {
+.bookmarksPage li {
 	list-style-image: url(../images/greendot.jpg);
 	padding-bottom: 5px;
 }
