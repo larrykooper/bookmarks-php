@@ -5,6 +5,14 @@
 </head>
 <body class="bookmarksPage">
 
+<?
+if ($validated) {
+    include('templates/headerlogged.php');
+} else {
+    include('templates/header.php');
+}
+?>
+
 <div class="LBBMain">
 
     <p class="help">
@@ -12,8 +20,9 @@
 
         You are now viewing the bookmarks of <a href="bookmarks.php?user=<?= $userdisp ?> "class='body' ><?= $wantedUser ?></a>
     </p>
-
-    Sort by:
+    <? if ($pageFrom != 'random'): ?>
+        Sort by:
+    <? endif   ?>
     <?
     if ($Tagfilter) {
         $queryStringTags = "&tags=$wantedTagString";

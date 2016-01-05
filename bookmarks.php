@@ -116,12 +116,6 @@ switch ($MySortKey) {
 
 require_once('db_con.php');
 
-if ($validated) {
-    include('templates/headerlogged.php');
-} else {
-    include('templates/header.php');
-}
-
 if ($Userfilter) {
     $userdisp = $wantedUser;
 } else {
@@ -235,7 +229,7 @@ if ($myDirection == "ASC") {
 }
 display_pnt();
 
-$currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$pageFrom = 'bookmarks';
 $bookmarks_data = array();
 for ($i=0; $i <$num_results; $i++) {
 
