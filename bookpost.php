@@ -268,8 +268,8 @@ if ($Mode == "save")
     }
 } // if mode = save
 // ----------------------------------------------------------------------------------------
-if (($Mode == "save_prevpost") or ($Mode == "save_newpost"))
-{
+if (($Mode == "save_prevpost") or ($Mode == "save_newpost")) {
+
 // Save when we have put up two choices
 
     $frmSiteURLID = $_POST['siteediting'];
@@ -306,8 +306,7 @@ exit();
 // End of saving stuff
 // ----------------------------------------------------------------------------------------
 
-if ($Mode == "get_title")
-{
+if ($Mode == "get_title") {
     $frmURL = $_POST['url'];
     $Title_Of_Page = ac_Get_Title_From_Page($frmURL, "2048");
     $UrlToPost = $frmURL;
@@ -317,17 +316,13 @@ if ($Mode == "get_title")
 // end of mode = get_title
 
 // Just show the form
-if ($Mode == "notsave")
-{
+if ($Mode == "notsave") {
     require ("templates/bookPostHeader.php");
     show_form($UrlToPost, $TitleToPost,"","");
-    print "</div>";
 }
 // ----------------------------------------------------------------------------------------
 // This is what happens if the username is not recognized
-}
-else
-{
+} else {
     require('bkbottom.php');
 }
 ?>
