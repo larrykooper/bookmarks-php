@@ -11,9 +11,9 @@ if ($validated) {
 } else {
     include('templates/header.php');
 }
-require "templates/allTags.php";
 
 if ($pageFrom != 'random') {
+    require "templates/allTags.php";
     display_pnt();
 }
 ?>
