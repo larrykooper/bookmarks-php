@@ -117,7 +117,7 @@ switch ($MySortKey) {
 require_once('db_con.php');
 
 if ($validated) {
-    include('headerlogged.inc');
+    include('templates/headerlogged.php');
 } else {
     include('templates/header.php');
 }

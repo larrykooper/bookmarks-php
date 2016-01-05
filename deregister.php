@@ -69,7 +69,7 @@ function process_deletion()
 </head>
 <body>
 <?php
-include('headerlogged.inc');
+include('templates/headerlogged.php');
 ?>
 <div class="LBBRight"><div class='LBBRightTitle'></div></div>
 <div class="LBBMain">

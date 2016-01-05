@@ -65,7 +65,7 @@ require('db_con.php');
 <?php
 If ($validated)
 {
-include('headerlogged.inc');
+include('templates/headerlogged.php');
 }
 else
 {

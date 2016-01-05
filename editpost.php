@@ -36,7 +36,7 @@ foreach ($_GET as $k => $v)
 </head>
 <body>
 <?php
-include('headerlogged.inc');
+include('templates/headerlogged.php');
 ?>
     <fieldset class="chg">
     <legend>Edit this bookmark</legend>

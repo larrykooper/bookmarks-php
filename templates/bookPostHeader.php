@@ -7,7 +7,7 @@
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     </head>
     <body>
-        <? include('headerlogged.inc') ?>
+        <? include('templates/headerlogged.php') ?>
 
         <div class="LBBMain">
 

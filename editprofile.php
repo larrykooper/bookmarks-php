@@ -24,7 +24,7 @@ function show_form($errors = '')
 
 <body>
 <?php
-include('headerlogged.inc');
+include('templates/headerlogged.php');
 ?>
 <div class='LBBRight'></div>
 <div class="LBBMain">
@@ -124,7 +124,7 @@ function disp_pageheader()
 </head>
 <body>
 <?php
-include('headerlogged.inc');
+include('templates/headerlogged.php');
 ?>
 <div class="LBBRight">
 <div class="LBBRightTitle"></div>

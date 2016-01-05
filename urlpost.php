@@ -38,7 +38,7 @@ switch ($MySortKey)
 </head>
 <body>
 <?php
-include('headerlogged.inc');
+include('templates/headerlogged.php');
 ?>
 <?php
 // Display Common Tags

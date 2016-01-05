@@ -41,7 +41,7 @@ $myheader = <<< End_Of_Header
 	<body>
 End_Of_Header;
 	print $myheader;
-	include('headerlogged.inc');
+	include('templates/headerlogged.php');
 $mymessage = <<< End_Of_MyMess
 	<br />You have not yet posted any sites in rotation.
   To do so, click on <a href="bookpost.php" class="body">Post a site</a> and check the box for In Rotation.

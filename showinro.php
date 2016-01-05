@@ -153,7 +153,7 @@ $myTitle = "Bookmarks LarryBeth Style";
 <?php
 If ($validated)
 {
-include('headerlogged.inc');
+include('templates/headerlogged.php');
 }
 else
 {
