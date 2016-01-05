@@ -229,6 +229,7 @@ if ($myDirection == "ASC") {
 }
 display_pnt();
 
+$currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  // used in the template when we redirect
 $pageFrom = 'bookmarks';
 $bookmarks_data = array();
 for ($i=0; $i <$num_results; $i++) {
