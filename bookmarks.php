@@ -148,8 +148,6 @@ for ($i=0; $i <$num_result9; $i++) {
     $tags_data[] = $row9;
 }
 
-require "templates/allTags.php";
-
 // end of displaying all tags
 // -----------------------------------------------------------------------------------------
 
@@ -227,7 +225,6 @@ if ($myDirection == "ASC") {
 } else {
     $displayDirection = "ASC";
 }
-display_pnt();
 
 $currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  // used in the template when we redirect
 $pageFrom = 'bookmarks';

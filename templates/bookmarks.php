@@ -11,6 +11,11 @@ if ($validated) {
 } else {
     include('templates/header.php');
 }
+require "templates/allTags.php";
+
+if ($pageFrom != 'random') {
+    display_pnt();
+}
 ?>
 
 <div class="LBBMain">
