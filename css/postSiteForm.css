@@ -21,3 +21,20 @@ label > span {
 .private {
     display: block;
 }
+
+ul.ui-autocomplete {
+    list-style-type: none;
+}
+
+.ui-widget-content {
+    border: 1px solid #aaaaaa;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+
+#searchTags {
+    font-weight: bold
+}

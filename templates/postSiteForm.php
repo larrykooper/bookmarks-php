@@ -16,6 +16,7 @@
 
         <input type="text" name="extended" value="<?= $extenstring ?>" size=80> (optional)
         <div class="explanation">Optional extended description of the site</div>
+
         <label class="firstCol" for="tags"><span>Tags:</span></label>
 
         <input id="tagEntry" type="text" name="tags" value="<?= $tagstring ?>" size=80> (space separated)
@@ -37,3 +38,8 @@
 
     </form>
 </fieldset>
+<div id="searchTags">
+Search tags:
+   <input id="tagSearch" type="text" name="tagSearch" size=30>
+   (beginning of tag only)
+</div>

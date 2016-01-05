@@ -29,7 +29,7 @@ function deliver_response($api_response){
     header('Content-Type: application/json; charset=utf-8');
 
     // Format data into a JSON response
-    $json_response = json_encode($api_response);
+    $json_response = json_encode($api_response['data']);
 
     // Deliver formatted data
     echo $json_response;
@@ -105,10 +105,10 @@ $request = $_GET['request'];
 $args = explode('/', rtrim($request, '/'));
 
 if ($args[0] == 'tags') {
-
     require('../../db_con.php');
+    $term = $_GET['term'];
 
-    $queryAllTags = "SELECT DISTINCT Tag FROM UserSiteTag WHERE UserID ='$args[1]' AND Tag LIKE '$args[2]%'";
+    $queryAllTags = "SELECT DISTINCT Tag FROM UserSiteTag WHERE UserID ='$args[1]' AND Tag LIKE '$term%'";
 
     $result9 = mysql_query($queryAllTags) or die (mysql_error()."<br />Couldn't execute query: $queryAllTags");
     $num_result9 = mysql_num_rows($result9);
