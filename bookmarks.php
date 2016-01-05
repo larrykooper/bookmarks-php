@@ -140,7 +140,7 @@ if ($_SESSION['tagsort'] == 'alpha') {
     $MyTagSort = "tcount DESC";
 }
 
-// Do not display tags for private sites
+// Do not display tags for private sites for other users
 if ($userdisp == $theusername) {
     $queryAllTags = "SELECT count(*) AS tcount, Tag FROM UserSiteTag WHERE UserID ='" . $userdisp ."' GROUP BY Tag ORDER BY ". $MyTagSort;
 } else {
