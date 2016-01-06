@@ -326,6 +326,9 @@ if ($Mode == "notsave") {
     require('bkbottom.php');
 }
 ?>
+<script>
+    window.sitename = '<?php echo $sitename; ?>';
+</script>
 <script type="text/javascript" src="js/bookpost.js"></script>
 </body>
 </html>

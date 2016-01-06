@@ -9,7 +9,7 @@ var bookmarksApp = {
 };
 
 $(document).ready(function() {
-    // Only cleans up the title we took off the page
+    // Only cleans up the title we took off the page, not any title user enters
     var newName, name;
     var myInput = $("input[name='description'].freshPost");
     var name = myInput.val();
@@ -20,7 +20,7 @@ $(document).ready(function() {
     $("#tagSearch").autocomplete({
         minLength: 3,
         delay: 500,
-        source: "http://localhost/larrybeth/bookmarks/api/v1/tags/stormville/",
+        source: "http://" + window.sitename + "/bookmarks/api/v1/tags/stormville/",  // hard-coded for stormville for now
         open: function() {$('.ui-menu').width(300)}
     });
 });
