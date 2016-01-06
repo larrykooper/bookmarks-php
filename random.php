@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('ckuser.php');
+require('const1.php');
 require_once('db_con.php');
 $userdisp = $theusername;
 $wantedUser = $theusername;
@@ -36,5 +37,7 @@ for ($j=0; $j <$num_results2; $j++) {
 $one_bookmark_data = array('bookmark' => $row, 'tags' => $tags);
 $bookmarks_data[] = $one_bookmark_data;
 // Done getting data for tags
+
+$currentURL = "http://$sitename/bookmarks/bookmarks.php?user=$theusername";
 
 require "templates/bookmarks.php";
