@@ -1,4 +1,3 @@
-
 <div class='LBBRight'>
     <div class='LBBRightTitle'>
         All tags
@@ -23,13 +22,13 @@
     <div class='LBBRightTitle'>
         sort by
         <? if ($_SESSION['tagsort']=='freq'): ?>
-            <a class="right" href="bookmarks.php?user="<?= $userdisp ?>"&amp;settagsort=alpha">
+            <a class="right" href="bookmarks.php?user=<?= $userdisp ?>&amp;settagsort=alpha">
                 alpha
             </a>
              | freq
         <? else: ?>
             alpha
-            <a class="right" href="bookmarks.php?user="<?= $userdisp ?>"&amp;settagsort=freq">
+            <a class="right" href="bookmarks.php?user=<?= $userdisp ?>&amp;settagsort=freq">
                 | freq
             </a>
 
